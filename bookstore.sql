@@ -1,0 +1,103 @@
+CREATE TABLE BOOK (
+  book_id INT PRIMARY KEY AUTO_INCREMENT,
+  book_name VARCHAR(255) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  img_url VARCHAR(255),
+  author VARCHAR(255) NOT NULL,
+  book_cover VARCHAR(255) DEFAULT NULL,
+  page_number INT NOT NULL,
+  publisher VARCHAR(255) DEFAULT NULL,
+  language VARCHAR(255) NOT NULL,
+  publication_date DATE NOT NULL,
+  description TEXT NOT NULL
+);
+
+
+CREATE TABLE USER (
+  user_id INT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  user_name VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role ENUM('user', 'admin') DEFAULT 'user',
+  fullname VARCHAR(255) NOT NULL,
+  bday DATE ,
+  point INT NOT NULL DEFAULT 0,
+  avt_url VARCHAR(255)
+);
+
+
+CREATE TABLE CATEGORY (
+  category_name VARCHAR(255) NOT NULL,
+  book_id INT NOT NULL,
+  PRIMARY KEY (book_id, category_name),
+  FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
+);
+
+CREATE TABLE CART (
+  user_id INT NOT NULL,
+  book_id INT NOT NULL,
+  quantity INT NOT NULL,
+  PRIMARY KEY (user_id, book_id),
+  FOREIGN KEY (user_id) REFERENCES USER(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
+);
+
+CREATE TABLE NEWS (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255),
+  content TEXT NOT NULL,
+  publish_date DATE NOT NULL,
+  tag VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE REVIEW (
+  review_id INT PRIMARY KEY AUTO_INCREMENT,
+  rating INT NOT NULL,
+  review TEXT,
+  user_id INT NOT NULL,
+  book_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES USER(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
+);
+
+CREATE TABLE CONTACT (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fullname VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  resolved BOOLEAN DEFAULT false
+);
+
+CREATE TABLE LIKED (
+  user_id INT NOT NULL,
+  book_id INT NOT NULL,
+  PRIMARY KEY (user_id, book_id),
+  FOREIGN KEY (user_id) REFERENCES USER(user_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
+);
+
+CREATE TABLE ORDERS (
+  order_id INT PRIMARY KEY AUTO_INCREMENT,
+  user_id INT NOT NULL DEFAULT -1,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(255) NOT NULL,
+  total_amount DECIMAL(10,2) NOT NULL,
+  order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+  status_order ENUM('Pending','Done', 'Cancell') NOT NULL DEFAULT 'Pending'
+);
+
+
+CREATE TABLE ORDER_ITEM (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  order_id INT NOT NULL,
+  book_id INT NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
+);
+

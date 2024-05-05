@@ -120,16 +120,16 @@ VALUES ('admin@example.com', 'admin', 'admin', 'admin', 'Original Admin');
 
 /*USERS*/
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('john@example.com', 'johnsmith', '$2y$10$DVqz9I7oFKR', 'user', 'Tien Dat', '1990-01-01', 0, NULL);
+VALUES ('john@example.com', 'datduong', 'datduong', 'user', 'Tien Dat', '1990-01-01', 0, NULL);
 
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point,avt_url)
-VALUES ('lisa@example.com', 'lisawhite', '$2y$10$DVqz9I7oFKR', 'user', 'Diu Quang', '2001-02-09',0, NULL);
+VALUES ('lisa@example.com', 'diuquang', 'diuquang', 'user', 'Diu Quang', '2001-02-09',0, NULL);
 
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('sam@example.com', 'samjones', '$2y$10$DVqz9I7oFKR', 'user', 'Quang Khanh', '1995-08-15', 0, NULL);
+VALUES ('sam@example.com', 'quangkhanh', 'quangkhanh', 'user', 'Quang Khanh', '1995-08-15', 0, NULL);
 
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('jane@example.com', 'jane_doe', '$2y$10$DVqz9I7oFKR', 'admin', 'Quoc Khanh', '1985-05-23', 0, NULL);
+VALUES ('jane@example.com', 'quockhanh', 'quockhanh', 'admin', 'Quoc Khanh', '1985-05-23', 0, NULL);
 
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
 VALUES ('jim@example.com', 'jimbrown', '$2y$10$DVqz9I7oFKR', 'user', 'Jim Brown', '1982-12-31', 0, NULL);
@@ -137,52 +137,53 @@ VALUES ('jim@example.com', 'jimbrown', '$2y$10$DVqz9I7oFKR', 'user', 'Jim Brown'
 
 /*BOOK*/
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Lyrics of the Lalala Musical', 24.99, 10, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-01.jpg', 'Amanda Smith', 256, 'Penguin Books', 'English', '2022-01-01', 'This is the official songbook for the hit musical "Lalala". It includes all of the lyrics from the show, as well as exclusive behind-the-scenes photos and commentary from the writers and performers. Perfect for fans of the show or anyone who loves musical theater!');
+VALUES ('Lyrics of the Lalala Musical', 24.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-01.jpg', 'Amanda Smith', 'Hardcover' , 256, 'Penguin Books', 'English', '2022-01-01', 'This is the official songbook for the hit musical "Lalala". It includes all of the lyrics from the show, as well as exclusive behind-the-scenes photos and commentary from the writers and performers. Perfect for fans of the show or anyone who loves musical theater!');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('See Me', 14.99, 20, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-02.jpg', 'Sarah Johnson', 320, 'Grand Central Publishing', 'English', '2015-10-13', 'A romantic suspense novel by bestselling author Nicholas Sparks, featuring characters with complicated pasts and a dangerous present. Will they be able to overcome their differences and find love?');
+VALUES ('See Me', 14.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-02.jpg', 'Sarah Johnson', 'Hardcover', 320, 'Grand Central Publishing', 'English', '2015-10-13', 'A romantic suspense novel by bestselling author Nicholas Sparks, featuring characters with complicated pasts and a dangerous present. Will they be able to overcome their differences and find love?');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('The Dead Compendium Volume 3', 29.99, 20, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-03.jpg', 'Mark Johnson', 1120, 'img Comics', 'English', '2015-09-29', 'The third volume of the popular graphic novel series "The Walking Dead", collecting issues #97-144. Follow the survivors as they struggle to survive in a world overrun by zombies. This volume includes the introduction of fan-favorite character Negan.');
+VALUES ('The Dead Compendium Volume 3', 29.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-03.jpg', 'Mark Johnson', 'Hardcover', 1120, 'img Comics', 'English', '2015-09-29', 'The third volume of the popular graphic novel series "The Walking Dead", collecting issues #97-144. Follow the survivors as they struggle to survive in a world overrun by zombies. This volume includes the introduction of fan-favorite character Negan.');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Big Magic Beyond Fear', 12.99, 5, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-04.jpg', 'Emily Wilson', 288, 'Riverhead Books', 'English', '2016-09-27', 'A self-help book by Elizabeth Gilbert, author of "Eat, Pray, Love". In this book, Gilbert shares her insights on creativity, inspiration, and fear, and encourages readers to embrace their creativity and pursue their passions.');
+VALUES ('Big Magic Beyond Fear', 12.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-04.jpg', 'Emily Wilson', 'Hardcover', 288, 'Riverhead Books', 'English', '2016-09-27', 'A self-help book by Elizabeth Gilbert, author of "Eat, Pray, Love". In this book, Gilbert shares her insights on creativity, inspiration, and fear, and encourages readers to embrace their creativity and pursue their passions.');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Kill Shot Assassin Thriller', 9.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-05.jpg', 'David Smith', 416, 'Pocket Books', 'English', '2012-02-07', 'A thriller novel by Vince Flynn, featuring CIA operative Mitch Rapp. In this installment, Rapp is tasked with tracking down a group of terrorists who are planning a major attack on the United States. Will he be able to stop them in time?');
+VALUES ('Kill Shot Assassin Thriller', 9.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-05.jpg', 'David Smith', 'Hardcover', 416, 'Pocket Books', 'English', '2012-02-07', 'A thriller novel by Vince Flynn, featuring CIA operative Mitch Rapp. In this installment, Rapp is tasked with tracking down a group of terrorists who are planning a major attack on the United States. Will he be able to stop them in time?');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('The American Lady', 8.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-06.jpg', 'Samantha Green', 464, 'Berkley Books', 'English', '2012-02-07', 'A historical romance novel by Petra Durst-Benning, set in the early 20th century. The story follows a young woman named Sophie who leaves Germany for America in search of a better life. Along the way, she meets a handsome man named Luke and the two fall in love. But will their love be enough to overcome the challenges they face?');
+VALUES ('The American Lady', 8.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-06.jpg', 'Samantha Green', 'Hardcover', 464, 'Berkley Books', 'English', '2012-02-07', 'A historical romance novel by Petra Durst-Benning, set in the early 20th century. The story follows a young woman named Sophie who leaves Germany for America in search of a better life. Along the way, she meets a handsome man named Luke and the two fall in love. But will their love be enough to overcome the challenges they face?');
 
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Everything’s Eventual: Tales', 12.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-07.jpg', 'Sarah Williams', 464, 'Scribner', 'English', '2002-03-19', 'A collection of 14 short stories by Stephen King, ranging from horror to science fiction to suspense. These stories showcase King''s mastery of storytelling and his ability to create unforgettable characters.');
+VALUES ('Everything’s Eventual: Tales', 12.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-07.jpg', 'Sarah Williams', 'Hardcover', 464, 'Scribner', 'English', '2002-03-19', 'A collection of 14 short stories by Stephen King, ranging from horror to science fiction to suspense. These stories showcase King''s mastery of storytelling and his ability to create unforgettable characters.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Act of Treason (A Rapp Novel)', 8.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-08.jpg', 'Mark Johnson', 480, 'Pocket Star', 'English', '2006-09-12', 'A political thriller novel by Vince Flynn, featuring the CIA operative Mitch Rapp. In this book, Rapp must uncover a conspiracy that involves some of the highest levels of the US government. Will he be able to stop the conspirators before it''s too late?');
+VALUES ('Act of Treason (A Rapp Novel)', 8.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-08.jpg', 'Mark Johnson', 'Hardcover', 480, 'Pocket Star', 'English', '2006-09-12', 'A political thriller novel by Vince Flynn, featuring the CIA operative Mitch Rapp. In this book, Rapp must uncover a conspiracy that involves some of the highest levels of the US government. Will he be able to stop the conspirators before it''s too late?');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('American Assassin Thriller', 14.99, 5, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-09.jpg', 'Tom Lee', 464, 'Atria/Emily Bestler Books', 'English', '2010-07-06', 'A thriller novel by Vince Flynn, which serves as a prequel to his Mitch Rapp series. In this book, a young Mitch Rapp is recruited by the CIA to become a top secret agent. But as he goes through his training, he realizes that not everything is as it seems.');
+VALUES ('American Assassin Thriller', 14.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-09.jpg', 'Tom Lee', 'Hardcover', 464, 'Atria/Emily Bestler Books', 'English', '2010-07-06', 'A thriller novel by Vince Flynn, which serves as a prequel to his Mitch Rapp series. In this book, a young Mitch Rapp is recruited by the CIA to become a top secret agent. But as he goes through his training, he realizes that not everything is as it seems.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Humans of New York: Stories', 22.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-10.jpg', 'Brandon Stanton', 432, 'St. Martin''s Press', 'English', '2015-10-13', 'A collection of photographs and stories from the popular Humans of New York blog. In this book, photographer Brandon Stanton captures the diversity and humanity of New York City through the stories of the people who live there.');
+VALUES ('Humans of New York: Stories', 22.99,'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-10.jpg', 'Brandon Stanton', 'Hardcover', 432, 'St. Martin''s Press', 'English', '2015-10-13', 'A collection of photographs and stories from the popular Humans of New York blog. In this book, photographer Brandon Stanton captures the diversity and humanity of New York City through the stories of the people who live there.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Everything’s Eventual: Dark', 9.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-11.jpg', 'Sarah Williams', 480, 'Pocket Books', 'English', '2002-11-01', 'A collection of 14 more short stories by Stephen King, all of which have a dark and unsettling tone. From a man who receives messages from the future to a woman who must confront her deepest fears.');
+VALUES ('Everything’s Eventual: Dark', 9.99,  'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-11.jpg', 'Sarah Williams', 'Hardcover', 480, 'Pocket Books', 'English', '2002-11-01', 'A collection of 14 more short stories by Stephen King, all of which have a dark and unsettling tone. From a man who receives messages from the future to a woman who must confront her deepest fears.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Trail of Broken Wings', 14.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-12.jpg', 'John Smith', 352, 'Penguin Random House', 'English', '2015-05-19', 'A powerful and emotional novel about the secrets and betrayals that can break a family apart.');
+VALUES ('Trail of Broken Wings', 14.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-12.jpg', 'John Smith', 'Hardcover', 352, 'Penguin Random House', 'English', '2015-05-19', 'A powerful and emotional novel about the secrets and betrayals that can break a family apart.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('The Glassblower', 12.99, 1, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-13.jpg', 'Jane Doe', 448, 'HarperCollins', 'English', '2016-03-01', 'A captivating historical fiction novel about a family of glassblowers in 19th century Germany.');
+VALUES ('The Glassblower', 12.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-13.jpg', 'Jane Doe', 'Hardcover', 448, 'HarperCollins', 'English', '2016-03-01', 'A captivating historical fiction novel about a family of glassblowers in 19th century Germany.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('Frozen Stories', 7.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-14.jpg', 'Sarah Lee', 64, 'Disney Press', 'English', '2014-09-02', 'A collection of short stories based on the hit Disney movie Frozen.');
+VALUES ('Frozen Stories', 7.99,'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-14.jpg', 'Sarah Lee', 'Hardcover', 64, 'Disney Press', 'English', '2014-09-02', 'A collection of short stories based on the hit Disney movie Frozen.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('5-Minute Stories', 9.99, 0, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-16.jpg', 'Tom Smith', 192, 'Disney Press', 'English', '2019-01-08', 'A collection of short stories featuring beloved Disney characters, perfect for bedtime reading.');
+VALUES ('5-Minute Stories', 9.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-16.jpg', 'Tom Smith', 'Hardcover', 192, 'Disney Press', 'English', '2019-01-08', 'A collection of short stories featuring beloved Disney characters, perfect for bedtime reading.');
 
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
-VALUES ('The Forgotten Garden', 11.99, 1, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-17.jpg', 'Anne Doe', 560, 'Washington Square Press', 'English', '2009-02-03', 'A mysterious and enchanting novel about a woman who discovers a long-hidden family secret while searching for her roots.');
+VALUES ('The Forgotten Garden', 11.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-17.jpg', 'Anne Doe', 'Hardcover', 560, 'Washington Square Press', 'English', '2009-02-03', 'A mysterious and enchanting novel about a woman who discovers a long-hidden family secret while searching for her roots.');
+
 
 INSERT INTO CATEGORY (category_name, book_id)
 VALUES

@@ -1,0 +1,75 @@
+<?php 
+    require_once __DIR__ . '/../connect.php/';
+
+    class CategoryModel {
+        private $con;
+
+        public function __construct() {
+            $database = new Connect();
+            $this->con = $database->connect();
+        }
+
+        // input: book_id, category_name
+        // output: bool
+        public function create($params) {
+            $book_id = intval($params['book_id']); 
+            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+
+            $query = "INSERT INTO CATEGORY
+            (book_id, category_name)
+            VALUES
+            ($book_id, $category_name)";
+            $result = mysqli_query($this->con, $query);
+
+            return $result ? true : false;
+        }
+
+        // input: category_name
+        // output: list of all matched book
+        public function read($params) {
+            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+
+            $query = "SELECT * FROM CATEGORY WHERE category_name = $category_name";
+            $result = mysqli_query($this->con, $query);
+
+            $books = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $books[] = $row;
+                }
+            }
+            return $books;
+        }
+
+        // input: book_id, category_name
+        // output: bool
+        public function update($params) {
+            $book_id = intval($params['book_id']); 
+            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+
+            $query = "UPDATE CATEGORY SET
+                    category_name = $category_name
+                    WHERE
+                    book_id = $book_id";
+            $result = mysqli_query($this->con, $query);
+
+            return $result ? true : false;
+        }
+
+        // input: book_id, category_name
+        // output: bool
+        public function delete($params) {
+            $book_id = intval($params['book_id']); 
+            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+
+            $query = "DELETE FROM CATEGORY WHERE book_id = $book_id AND category_name = $category_name";
+            $result = mysqli_query($this->con, $query);
+
+            return $result ? true : false;
+        }
+
+        public function __destruct() {
+            $this->con->close();
+        }
+    }
+?>

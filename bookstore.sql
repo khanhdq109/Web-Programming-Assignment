@@ -134,7 +134,6 @@ VALUES ('jane@example.com', 'quockhanh', 'quockhanh', 'admin', 'Quoc Khanh', '19
 INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
 VALUES ('jim@example.com', 'jimbrown', '$2y$10$DVqz9I7oFKR', 'user', 'Jim Brown', '1982-12-31', 0, NULL);
 
-
 /*BOOK*/
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description)
 VALUES ('Lyrics of the Lalala Musical', 24.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-01.jpg', 'Amanda Smith', 'Hardcover' , 256, 'Penguin Books', 'English', '2022-01-01', 'This is the official songbook for the hit musical "Lalala". It includes all of the lyrics from the show, as well as exclusive behind-the-scenes photos and commentary from the writers and performers. Perfect for fans of the show or anyone who loves musical theater!');
@@ -184,7 +183,7 @@ VALUES ('5-Minute Stories', 9.99, 'https://demo.tokopress.com/bookie/wp-content/
 INSERT INTO BOOK (book_name, price,   img_url, author, book_cover, page_number, publisher, language, publication_date, description)
 VALUES ('The Forgotten Garden', 11.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-17.jpg', 'Anne Doe', 'Hardcover', 560, 'Washington Square Press', 'English', '2009-02-03', 'A mysterious and enchanting novel about a woman who discovers a long-hidden family secret while searching for her roots.');
 
-
+/*CATEGORY*/
 INSERT INTO CATEGORY (category_name, book_id)
 VALUES
     ('Drama', 1),
@@ -205,7 +204,6 @@ VALUES
     ('Culture', 14),
     ('Life Style', 15),
     ('Business', 16);
-
 
 /*REVIEW*/
 INSERT INTO REVIEW (rating, review, user_id,  book_id)
@@ -239,7 +237,6 @@ INSERT INTO REVIEW (rating, review, user_id,  book_id)
 VALUES (5, 'This book was fantastic! I couldn\'t put it down and would definitely read it again.', 6, 15);
 
 /*NEWS*/
-
 INSERT INTO NEWS (title, publish_date, tag, content)
 VALUES ('Everything You Need To Know About Blogging', '2015-06-28', 'DREAM, IDEA, NOVEL', 'People communicate differently than they used to thanks to technology that didn’t exist before. Blogging is hot right now, and this article can help you to take advantage of that.
 

@@ -12,6 +12,13 @@
         // input: title, content, tag
         // output: bool
         public function create($params) {
+            $defaultParams = [
+                'title' => 'Title',
+                'content' => 'Content',
+                'tag' => ''
+            ];
+            $params = array_merge($defaultParams, $params);
+
             $title = mysqli_real_escape_string($this->con, $params['title']);
             $content = mysqli_real_escape_string($this->con, $params['content']);
             $publish_date = date('Y-m-d');
@@ -46,16 +53,23 @@
         // output: bool
         public function update($params) {
             $id = intval($params['id']);
-            $title = mysqli_real_escape_string($this->con, $params['title']);
-            $content = mysqli_real_escape_string($this->con, $params['content']);
-            $tag = mysqli_real_escape_string($this->con, $params['tag']);
+            $updateFields = [];
+            foreach($params as $key => $value) {
+                if ($key !== 'id') {
+                    $escapedValue = mysqli_real_escape_string($this->con, $value);
+                    if (is_numeric($value)) {
+                        if ($key == 'price') {
+                            $escapedValue = number_format(floatval($value), 2, '.', '');
+                        }
+                        else {
+                            $escapedValue = intval($value);
+                        }
+                    }
+                    $updateFields[] = "$key = '$escapedValue'";
+                }
+            }
 
-            $query = "UPDATE NEWS SET
-                    title = '$title',
-                    content = '$content',
-                    tag = '$tag'
-                    WHERE
-                    id = '$id'";
+            $query = "UPDATE NEWS SET " . implode(', ', $updateFields) . " WHERE id = $id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

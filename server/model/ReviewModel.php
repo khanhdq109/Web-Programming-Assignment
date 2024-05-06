@@ -82,14 +82,23 @@
         // output: bool
         public function update($params) {
             $review_id = intval($params['review_id']);
-            $rating = intval($params['rating']);
-            $review = mysqli_real_escape_string($this->con, $params['review']);
+            $updateFields = [];
+            foreach($params as $key => $value) {
+                if ($key !== 'review_id') {
+                    $escapedValue = mysqli_real_escape_string($this->con, $value);
+                    if (is_numeric($value)) {
+                        if ($key == 'price') {
+                            $escapedValue = number_format(floatval($value), 2, '.', '');
+                        }
+                        else {
+                            $escapedValue = intval($value);
+                        }
+                    }
+                    $updateFields[] = "$key = '$escapedValue'";
+                }
+            }
 
-            $query = "UPDATE REVIEW SET
-                    rating = $rating,
-                    review = '$review'
-                    WHERE
-                    review_id = $review_id";
+            $query = "UPDATE REVIEW SET " . implode(', ', $updateFields) . " WHERE review_id = $review_id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

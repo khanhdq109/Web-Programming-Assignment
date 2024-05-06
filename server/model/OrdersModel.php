@@ -70,22 +70,23 @@
         // output: bool
         public function update($params) {
             $order_id = intval($params['order_id']);
-            $user_id = intval($params['user_id']);
-            $name = mysqli_real_escape_string($this->con, $params['name']);
-            $email = mysqli_real_escape_string($this->con, $params['email']);
-            $address = mysqli_real_escape_string($this->con, $params['address']);
-            $phone_number = mysqli_real_escape_string($this->con, $params['phone_number']);
-            $status_order = mysqli_real_escape_string($this->con, $params['status_order']);
+            $updateFields = [];
+            foreach($params as $key => $value) {
+                if ($key !== 'order_id') {
+                    $escapedValue = mysqli_real_escape_string($this->con, $value);
+                    if (is_numeric($value)) {
+                        if ($key == 'price') {
+                            $escapedValue = number_format(floatval($value), 2, '.', '');
+                        }
+                        else {
+                            $escapedValue = intval($value);
+                        }
+                    }
+                    $updateFields[] = "$key = '$escapedValue'";
+                }
+            }
 
-            $query = "UPDATE ORDERS SET
-                    user_id = '$user_id',
-                    name = '$name',
-                    email = '$email',
-                    address = '$address',
-                    phone_number = '$phone_number',
-                    status_order = '$status_order'
-                    WHERE
-                    order_id = $order_id";
+            $query = "UPDATE ORDERS SET " . implode(', ', $updateFields) . " WHERE order_id = $order_id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

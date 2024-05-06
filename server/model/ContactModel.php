@@ -12,6 +12,14 @@
         // input: fullname, email, title, content
         // output: bool
         public function create($params) {
+            $defaultParams = [
+                'fullname' => 'Full Name',
+                'email' => 'sample@gmail.com',
+                'title' => 'Title',
+                'content' => 'Content'
+            ];
+            $params = array_merge($defaultParams, $params);
+            
             $fullname = mysqli_real_escape_string($this->con, $params['fullname']);
             $email = mysqli_real_escape_string($this->con, $params['email']);
             $title = mysqli_real_escape_string($this->con, $params['title']);

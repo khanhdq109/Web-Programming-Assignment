@@ -23,7 +23,12 @@
             else {
                 $role = mysqli_real_escape_string($this->con, 'user');
             }
-            $avt_url = mysqli_real_escape_string($this->con, $params['avt_url']);
+            if (isset($params['avt_url'])) {
+                $avt_url = mysqli_real_escape_string($this->con, $params['avt_url']);
+            }
+            else {
+                $avt_url = mysqli_real_escape_string($this->con, 'default.jpg');
+            }
 
             $query = "INSERT INTO USER
                     (user_name, fullname, email, password, bday, role, avt_url)
@@ -54,20 +59,23 @@
         // output: bool
         public function update($params) {
             $user_id = intval($params['user_id']);
-            $fullname = mysqli_real_escape_string($this->con, $params['fullname']);
-            $email = mysqli_real_escape_string($this->con, $params['email']);
-            $password = mysqli_real_escape_string($this->con, $params['password']);
-            $bday = mysqli_real_escape_string($this->con, $params['bday']);
-            $avt_url = mysqli_real_escape_string($this->con, $params['avt_url']);
+            $updateFields = [];
+            foreach($params as $key => $value) {
+                if ($key !== 'user_id') {
+                    $escapedValue = mysqli_real_escape_string($this->con, $value);
+                    if (is_numeric($value)) {
+                        if ($key == 'price') {
+                            $escapedValue = number_format(floatval($value), 2, '.', '');
+                        }
+                        else {
+                            $escapedValue = intval($value);
+                        }
+                    }
+                    $updateFields[] = "$key = '$escapedValue'";
+                }
+            }
 
-            $query = "UPDATE USER SET
-                    fullname = '$fullname',
-                    email = '$email',
-                    password = '$password',
-                    bday = '$bday',
-                    avt_url = '$avt_url'
-                    WHERE
-                    user_id = $user_id";
+            $query = "UPDATE USER SET " . implode(', ', $updateFields) . " WHERE user_id = $user_id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

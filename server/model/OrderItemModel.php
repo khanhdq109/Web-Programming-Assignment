@@ -73,16 +73,23 @@
         // output: bool
         public function update($params) {
             $id = intval($params['id']);
-            $book_id = intval($params['book_id']);
-            $order_id = intval($params['order_id']);
-            $quantity = intval($params['quantity']);
+            $updateFields = [];
+            foreach($params as $key => $value) {
+                if ($key !== 'id') {
+                    $escapedValue = mysqli_real_escape_string($this->con, $value);
+                    if (is_numeric($value)) {
+                        if ($key == 'price') {
+                            $escapedValue = number_format(floatval($value), 2, '.', '');
+                        }
+                        else {
+                            $escapedValue = intval($value);
+                        }
+                    }
+                    $updateFields[] = "$key = '$escapedValue'";
+                }
+            }
 
-            $query = "UPDATE ORDER_ITEM SET 
-                    book_id = '$book_id', 
-                    order_id = '$order_id', 
-                    quantity = '$quantity'
-                    WHERE 
-                    id = '$id'";
+            $query = "UPDATE ORDER_ITEM SET " . implode(', ', $updateFields) . " WHERE id = $id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

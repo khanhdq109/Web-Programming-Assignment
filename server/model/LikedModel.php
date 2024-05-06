@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__ . '/../connect.php/';
+    require_once __DIR__ . '/../connect.php';
 
     class LikedModel {
         private $con;
@@ -24,9 +24,26 @@
             return $result ? true : false;
         }
 
-        // input: user_id
-        // output: list of all liked books
+        // input: user_id, book_id
+        // output: a matched result
         public function read($params) {
+            $user_id = intval($params['user_id']);
+            $book_id = intval($params['book_id']);
+
+            $query = "SELECT * FROM LIKED WHERE user_id = $user_id AND book_id = $book_id";
+            $result = mysqli_query($this->con, $query);
+
+            $book = null;
+            if ($result && mysqli_num_rows($result) > 0) {
+                $book = mysqli_fetch_assoc($result);
+            }
+
+            return $book;
+        }
+
+        // intput: user_id
+        // output: list of all liked books
+        public function readByUserId($params) {
             $user_id = intval($params['user_id']);
 
             $query = "SELECT * FROM LIKED WHERE user_id = $user_id";
@@ -42,8 +59,26 @@
             return $books;
         }
 
-        // input: None
-        // output: true
+        // input: book_id
+        // output: list of all users like the book
+        public function readByBookId($params) {
+            $book_id = intval($params['book_id']);
+
+            $query = "SELECT * FROM LIKED WHERE book_id = $book_id";
+            $result = mysqli_query($this->con, $query);
+
+            $users = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $users[] = $row;
+                }
+            }
+
+            return $users;
+        }
+
+        // input: None --> Not neccessary
+        // output: bool
         public function update($params) {
             return true;
         }
@@ -52,7 +87,7 @@
         // output: bool
         public function delete($params) {
             $user_id = intval($params['user_id']);
-            $book_id = intval($params['bookk_id']);
+            $book_id = intval($params['book_id']);
 
             $query = "DELETE FROM LIKED WHERE user_id = $user_id AND book_id = $book_id";
             $result = mysqli_query($this->con, $query);

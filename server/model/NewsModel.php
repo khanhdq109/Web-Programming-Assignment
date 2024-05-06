@@ -1,7 +1,7 @@
 <?php 
-    require_once __DIR__ . '/../connect.php/';
+    require_once __DIR__ . '/../connect.php';
 
-    class NewstModel {
+    class NewsModel {
         private $con;
 
         public function __construct() {
@@ -20,18 +20,18 @@
             $query = "INSERT INTO NEWS
                     (title, content, publish_date, tag)
                     VALUES
-                    ($title, $content, $publish_date, $tag)";
+                    ('$title', '$content', '$publish_date', '$tag')";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
         }
 
-        // input: news_id
+        // input: id
         // output: a matched new
         public function read($params) {
-            $news_id = intval($params['news_id']);
+            $id = intval($params['id']);
 
-            $query = "SELECT * FROM NEWS WHERE news_id = $news_id";
+            $query = "SELECT * FROM NEWS WHERE id = $id";
             $result = mysqli_query($this->con, $query);
 
             $new = null;
@@ -42,31 +42,31 @@
             return $new;
         }
 
-        // input: news_id, title, content, tag
+        // input: id, title, content, tag
         // output: bool
         public function update($params) {
-            $news_id = intval($params['news_id']);
+            $id = intval($params['id']);
             $title = mysqli_real_escape_string($this->con, $params['title']);
             $content = mysqli_real_escape_string($this->con, $params['content']);
             $tag = mysqli_real_escape_string($this->con, $params['tag']);
 
             $query = "UPDATE NEWS SET
-                    title = $title,
-                    content = $content,
-                    tag = $tag
+                    title = '$title',
+                    content = '$content',
+                    tag = '$tag'
                     WHERE
-                    news_id = $news_id";
+                    id = '$id'";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
         }
 
-        // input: news_id
+        // input: id
         // output: bool
         public function delete($params) {
-            $news_id = intval($params['news_id']);
+            $id = intval($params['id']);
 
-            $query = "DELETE FROM NEWS WHERE news_id = $news_id";
+            $query = "DELETE FROM NEWS WHERE id = $id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

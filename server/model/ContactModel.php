@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__ . '/../connect.php/';
+    require_once __DIR__ . '/../connect.php';
 
     class ContactModel {
         private $con;
@@ -16,12 +16,11 @@
             $email = mysqli_real_escape_string($this->con, $params['email']);
             $title = mysqli_real_escape_string($this->con, $params['title']);
             $content = mysqli_real_escape_string($this->con, $params['content']);
-            $resolved = false;
 
             $query = "INSERT INTO CONTACT
-                    (fullname, email, title, content, resolved)
+                    (fullname, email, title, content)
                     VALUES
-                    ($fullname, $email, $title, $content, $resolved)";
+                    ('$fullname', '$email', '$title', '$content')";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
@@ -43,7 +42,7 @@
             return $contact;
         }
 
-        // input: id, resolved --> only update status from admin
+        // input: id --> Only update resolved status from admin
         // output: bool
         public function update($params) {
             $id = intval($params['id']);

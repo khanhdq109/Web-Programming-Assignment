@@ -99,9 +99,9 @@ CREATE TABLE ORDERS (
   email VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL,
   phone_number VARCHAR(255) NOT NULL,
-  total_amount DECIMAL(10,2) NOT NULL,
+  total_amount DECIMAL(10, 2) NOT NULL,
   order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  status_order ENUM('Pending','Done', 'Cancell') NOT NULL DEFAULT 'Pending'
+  status_order ENUM('Pending','Done', 'Cancel') NOT NULL DEFAULT 'Pending'
 );
 
 CREATE TABLE ORDER_ITEM (
@@ -109,7 +109,7 @@ CREATE TABLE ORDER_ITEM (
   order_id INT NOT NULL,
   book_id INT NOT NULL,
   quantity INT NOT NULL,
-  price DECIMAL(10,2) NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
   FOREIGN KEY (order_id) REFERENCES ORDERS(order_id) ON DELETE CASCADE,
   FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
 );

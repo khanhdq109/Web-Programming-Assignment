@@ -1,5 +1,6 @@
 <?php 
-    require_once __DIR__ . '/../connect.php/';
+    require_once __DIR__ . '/../connect.php';
+    require_once __DIR__ . '/OrderItemModel.php';
 
     class OrdersModel {
         private $con;
@@ -17,12 +18,33 @@
             $email = mysqli_real_escape_string($this->con, $params['email']);
             $address = mysqli_real_escape_string($this->con, $params['address']);
             $phone_number = mysqli_real_escape_string($this->con, $params['phone_number']);
-            $total_amount = intval($params['total_amount']);
+            $total_amount = number_format(floatval(0), 2, '.', '');
 
             $query = "INSERT INTO ORDERS
                     (user_id, name, email, address, phone_number, total_amount)
                     VALUES
-                    ($user_id, $name, $email, $address, $phone_number, $total_amount)";
+                    ('$user_id', '$name', '$email', '$address', '$phone_number', $total_amount)";
+            $result = mysqli_query($this->con, $query);
+
+            // Calculate total amount of price
+            if ($result) {
+                $order_id = mysqli_insert_id($this->con);
+            } 
+            else {
+                return false;
+            }
+
+            $orderItemModel = new OrderItemModel();
+            $orderItems = $orderItemModel->readByOrderId(['order_id' => $order_id]);
+            if (!empty($orderItems)) {
+                foreach ($orderItems as $item) {
+                    $total_amount += $item['price'];
+                }
+            }
+
+            $query = "UPDATE ORDERS SET
+                    total_amount = $total_amount
+                    WHERE order_id = $order_id";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
@@ -44,7 +66,7 @@
             return $order;
         }
 
-        // input: order_id, user_id, name, email, address, phone_number, total_amount, status_order
+        // input: order_id, user_id, name, email, address, phone_number, status_order
         // output: bool
         public function update($params) {
             $order_id = intval($params['order_id']);
@@ -53,17 +75,15 @@
             $email = mysqli_real_escape_string($this->con, $params['email']);
             $address = mysqli_real_escape_string($this->con, $params['address']);
             $phone_number = mysqli_real_escape_string($this->con, $params['phone_number']);
-            $total_amount = intval($params['total_amount']);
             $status_order = mysqli_real_escape_string($this->con, $params['status_order']);
 
             $query = "UPDATE ORDERS SET
-                    user_id = $user_id,
-                    name = $name,
-                    email = $email,
-                    address = $address,
-                    phone_number = $phone_number,
-                    total_amount = $total_amount,
-                    status_order = $status_order
+                    user_id = '$user_id',
+                    name = '$name',
+                    email = '$email',
+                    address = '$address',
+                    phone_number = '$phone_number',
+                    status_order = '$status_order'
                     WHERE
                     order_id = $order_id";
             $result = mysqli_query($this->con, $query);

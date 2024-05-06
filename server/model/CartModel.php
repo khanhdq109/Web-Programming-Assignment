@@ -51,7 +51,23 @@
             $query = "SELECT * FROM CART WHERE user_id = $user_id AND book_id = $book_id";
             $result = mysqli_query($this->con, $query);
 
-            $items = null;
+            $item = null;
+            if ($result && mysqli_num_rows($result) > 0) {
+                $item = mysqli_fetch_assoc($result);
+            }
+            
+            return $item;
+        }
+
+        // input: user_id
+        // output: list of all cart's books
+        public function readByUserId($params) {
+            $user_id = intval($params['user_id']);
+
+            $query = "SELECT * FROM CART WHERE user_id = $user_id";
+            $result = mysqli_query($this->con, $query);
+
+            $items = [];
             if ($result && mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $items[] = $row;

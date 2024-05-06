@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__ . '/../connect.php/';
+    require_once __DIR__ . '/../connect.php';
 
     class CategoryModel {
         private $con;
@@ -18,18 +18,51 @@
             $query = "INSERT INTO CATEGORY
             (book_id, category_name)
             VALUES
-            ($book_id, $category_name)";
+            ($book_id, '$category_name')";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
         }
 
-        // input: category_name
-        // output: list of all matched book
+        // input: book_id, category_name
+        // output: a matched result
         public function read($params) {
+            $book_id = intval($params['book_id']);
             $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
 
-            $query = "SELECT * FROM CATEGORY WHERE category_name = $category_name";
+            $query = "SELECT * FROM CATEGORY WHERE book_id = $book_id AND category_name = '$category_name'";
+            $result = mysqli_query($this->con, $query);
+
+            $book = null;
+            if ($result && mysqli_num_rows($result) > 0) {
+                $book = mysqli_fetch_assoc($result);
+            }
+            return $book;
+        }
+
+        // input: book_id
+        // output: list of all matched categories
+        public function readByBookId($params) {
+            $book_id = intval($params['book_id']);
+
+            $query = "SELECT * FROM CATEGORY WHERE book_id = $book_id";
+            $result = mysqli_query($this->con, $query);
+
+            $categories = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $categories[] = $row;
+                }
+            }
+            return $categories;
+        }
+
+        // intput: category_name
+        // output: list of all matched books
+        public function readByCategory($params) {
+            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+
+            $query = "SELECT * FROM CATEGORY WHERE category_name = '$category_name'";
             $result = mysqli_query($this->con, $query);
 
             $books = [];
@@ -41,16 +74,17 @@
             return $books;
         }
 
-        // input: book_id, category_name
+        // input: book_id, category_name, new_category
         // output: bool
         public function update($params) {
             $book_id = intval($params['book_id']); 
             $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
+            $new_category = mysqli_real_escape_string($this->con, $params['new_category']);
 
             $query = "UPDATE CATEGORY SET
-                    category_name = $category_name
+                    category_name = '$new_category'
                     WHERE
-                    book_id = $book_id";
+                    book_id = $book_id AND category_name = '$category_name'";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
@@ -62,7 +96,7 @@
             $book_id = intval($params['book_id']); 
             $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
 
-            $query = "DELETE FROM CATEGORY WHERE book_id = $book_id AND category_name = $category_name";
+            $query = "DELETE FROM CATEGORY WHERE book_id = $book_id AND category_name = '$category_name'";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

@@ -7,7 +7,7 @@ import CardList from '../../component/CardList/CardList';
 import Test from '../../component/CardList/test';
 import Homepage from './homepage';
 
-function Main() {
+function MainGuest() {
 
   return (
     <Router>
@@ -45,4 +45,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default MainGuest;

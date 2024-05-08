@@ -17,7 +17,6 @@ function MainGuest() {
         <div className="col-md-3">
           <nav className="list-group">
             <div className="list-group-item list-group-item-action bg-success-subtle" aria-current="page">Categories</div>
-            <a href="/all" className="list-group-item list-group-item-action">Tất cả</a>
             <a href="/khoa-hoc" className="list-group-item list-group-item-action">Khoa Học</a>
             <a href="/van-hoc" className="list-group-item list-group-item-action">Văn Học</a>
             {/* Thêm các loại khác */}

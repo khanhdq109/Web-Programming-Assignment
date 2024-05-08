@@ -20,7 +20,7 @@ function Sidebar() {
                             </ul>
                             <ul class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Đăng nhập</a>
+                                <Link to="/profile" className="nav-link">Dang nhap</Link>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Đăng ký</a>

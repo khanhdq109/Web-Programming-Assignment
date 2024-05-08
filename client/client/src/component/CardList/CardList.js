@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function CardList({ category }) {
   const [currentPageStart, setCurrentPageStart] = useState(0);
@@ -38,7 +39,7 @@ function CardList({ category }) {
             <div className="card-body">
               <h5 className="card-title">{card.title}</h5>
               <p className="card-text">{card.description}</p>
-              <button className="btn btn-danger">Mua</button>
+              <Link to="/product/detail" className="nav-link"> <a className='btn btn-danger'>Mua</a></Link>
             </div>
           </div>
         </div>

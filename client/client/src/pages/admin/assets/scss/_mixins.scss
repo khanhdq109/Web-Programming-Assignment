@@ -1,0 +1,9 @@
+@mixin buttonStyle($border) {
+    background-color: #FFF;
+    border: $border;
+    outline: none;
+    padding: 4px 8px;
+    span {
+        margin-left: 6px;
+    }
+}

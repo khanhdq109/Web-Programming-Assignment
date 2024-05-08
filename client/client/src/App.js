@@ -1,14 +1,20 @@
 import React from 'react';
-import Homepage from './pages/guest/homepage';
-import Header from './component/header/Header';
+import { Main } from './pages/admin/Layout/Main';
+import { Login } from './pages/admin/Login/Login';
+import MainGuest from './pages/guest/main';
+
 
 function App() {
     return (
         <div className="App">
-          <Header/>
+          {/* <Header/>
           <main>
             <Homepage />
-          </main>
+          </main> */}
+          {/* Sau này chỗ này cần tạo router và layout để quản lý việc chuyển trang */}
+          <Main>
+            <MainGuest />
+          </Main>
         </div>
       );
     }    

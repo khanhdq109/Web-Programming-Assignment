@@ -1,0 +1,62 @@
+@import 'mixins.scss';
+@import 'variables.scss';
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-search-bar {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        
+        input {
+           width: 100%;
+           padding: 4px 16px;
+           border: solid 1px #ccc;
+           outline: none;
+        }
+
+        svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border: solid 1px #ccc;
+            border-left: none;
+            cursor: pointer;
+            transition: all .3s;
+            &:hover {
+                background-color: #ccc;
+            }
+        }
+    }
+
+    .header-action-btn {
+        @include buttonStyle(solid 1px #ccc);
+    }
+}
+
+.header-bottom {
+    background-color: #e5e5e5;
+    .header-bottom-nav-link {
+        color: #000;
+        text-decoration: none;
+
+        &.active, &:hover {
+            color: $headerTextHoverColor;
+            transition: all .3s;
+        }
+    }
+
+    .header-bottom-auth-btns button {
+        @include buttonStyle(none);
+        background-color: transparent;
+        margin: 0 8px;
+        transition: all .3s;
+        &:hover {
+            color: $headerTextHoverColor;
+        }
+    }
+}

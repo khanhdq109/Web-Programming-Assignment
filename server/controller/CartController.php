@@ -1,20 +1,20 @@
 <?php
-    require_once __DIR__ . '/../model/BookModel.php';
+    require_once __DIR__ . '/../model/CartModel.php';
 
-    class BookController {
-        private $bookModel;
+    class CartController {
+        private $cartModel;
 
         public function __construct() {
-            $this->bookModel = new BookModel();
+            $this->cartModel = new CartModel();
         }
 
         public function create($params) {
-            $result = $this->bookModel->create($params);
+            $result = $this->cartModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create book successfully!',
+                    'message' => 'Add to cart successfully!',
                     'data' => []
                 );
             }
@@ -22,19 +22,19 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create book failed!",
+                    'message' => "Add to cart failed!",
                     'data' => []
                 );
             }
         }
 
         public function read($params) {
-            $result = $this->bookModel->read($params);
+            $result = $this->cartModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book successfully!',
+                    'message' => 'Get item successfully!',
                     'data' => [$result]
                 );
             }
@@ -42,19 +42,19 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'Item not found!',
                     'data' => []
                 );
             }
         }
 
-        public function readAll($params) {
-            $result = $this->bookModel->readAll($params);
+        public function readByUserId($params) {
+            $result = $this->cartModel->readByUserId($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book list successfully!',
+                    'message' => 'Get cart successfully',
                     'data' => $result
                 );
             }
@@ -62,49 +62,29 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'No book available!',
+                    'message' => 'Cart not found!',
                     'data' => []
                 );
             }
         }
-
-        public function readBookByName($params) {
-            $result = $this->bookModel->readBookByName($params);
-            if (!empty($result)) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Get books successfully!',
-                    'data' => $result
-                );
-            }
-            else {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'Get books failed!',
-                    'data' => []
-                );
-            }
-        }
-
+ 
         public function update($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->cartModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'Item not found!',
                     'data' => []
                 );
             }
 
-            $result = $this->bookModel->update($params);
+            $result = $this->cartModel->update($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update book successfully!',
+                    'message' => 'Update item successfully!',
                     'data' => []
                 );
             }
@@ -112,29 +92,29 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update book failed!',
+                    'message' => 'Update item failed!',
                     'data' => []
                 );
             }
         }
 
         public function delete($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->cartModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'Item not found!',
                     'data' => []
                 );
             }
             
-            $result = $this->bookModel->delete($params);
+            $result = $this->cartModel->delete($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete book successfully!',
+                    'message' => 'Delete item successfully!',
                     'data' => []
                 );
             }
@@ -142,7 +122,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete book failed!',
+                    'message' => 'Delete item failed!',
                     'data' => []
                 );
             }

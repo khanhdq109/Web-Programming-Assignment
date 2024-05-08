@@ -64,7 +64,7 @@
 
         // input: None
         // output: list of all books
-        public function readBookList($params) {
+        public function readAll($params) {
             $query = "SELECT * FROM BOOK";
             $result = mysqli_query($this->con, $query);
 

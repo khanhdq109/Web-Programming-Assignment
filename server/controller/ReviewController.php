@@ -1,20 +1,20 @@
 <?php
-    require_once __DIR__ . '/../model/BookModel.php';
+    require_once __DIR__ . '/../model/ReviewModel.php';
 
-    class BookController {
-        private $bookModel;
+    class ReviewController {
+        private $reviewModel;
 
         public function __construct() {
-            $this->bookModel = new BookModel();
+            $this->reviewModel = new ReviewModel();
         }
 
         public function create($params) {
-            $result = $this->bookModel->create($params);
+            $result = $this->reviewModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create book successfully!',
+                    'message' => 'Create review successfully!',
                     'data' => []
                 );
             }
@@ -22,19 +22,19 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create book failed!",
+                    'message' => "Create review failed!",
                     'data' => []
                 );
             }
         }
 
         public function read($params) {
-            $result = $this->bookModel->read($params);
+            $result = $this->reviewModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book successfully!',
+                    'message' => 'Get review successfully!',
                     'data' => [$result]
                 );
             }
@@ -42,19 +42,19 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'Review not found!',
                     'data' => []
                 );
             }
         }
 
-        public function readAll($params) {
-            $result = $this->bookModel->readAll($params);
+        public function readByUserId($params) {
+            $result = $this->reviewModel->readByUserId($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book list successfully!',
+                    'message' => 'Get review list successfully!',
                     'data' => $result
                 );
             }
@@ -62,19 +62,19 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'No book available!',
+                    'message' => 'No review found!',
                     'data' => []
                 );
             }
         }
 
-        public function readBookByName($params) {
-            $result = $this->bookModel->readBookByName($params);
+        public function readByBookId($params) {
+            $result = $this->reviewModel->readByBookId($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get books successfully!',
+                    'message' => 'Get review list successfully!',
                     'data' => $result
                 );
             }
@@ -82,14 +82,14 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Get books failed!',
+                    'message' => 'Get review list failed!',
                     'data' => []
                 );
             }
         }
 
         public function update($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->reviewModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
@@ -99,12 +99,12 @@
                 );
             }
 
-            $result = $this->bookModel->update($params);
+            $result = $this->reviewModel->update($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update book successfully!',
+                    'message' => 'Update review successfully!',
                     'data' => []
                 );
             }
@@ -112,29 +112,29 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update book failed!',
+                    'message' => 'Update review failed!',
                     'data' => []
                 );
             }
         }
 
         public function delete($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->reviewModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'Review not found!',
                     'data' => []
                 );
             }
             
-            $result = $this->bookModel->delete($params);
+            $result = $this->reviewModel->delete($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete book successfully!',
+                    'message' => 'Delete review successfully!',
                     'data' => []
                 );
             }
@@ -142,7 +142,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete book failed!',
+                    'message' => 'Delete review failed!',
                     'data' => []
                 );
             }

@@ -1,20 +1,20 @@
 <?php
-    require_once __DIR__ . '/../model/BookModel.php';
+    require_once __DIR__ . '/../model/NewsModel.php';
 
     class BookController {
-        private $bookModel;
+        private $newsModel;
 
         public function __construct() {
-            $this->bookModel = new BookModel();
+            $this->newsModel = new NewsModel();
         }
 
         public function create($params) {
-            $result = $this->bookModel->create($params);
+            $result = $this->newsModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create book successfully!',
+                    'message' => 'Create new successfully!',
                     'data' => []
                 );
             }
@@ -22,19 +22,19 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create book failed!",
+                    'message' => "Create new failed!",
                     'data' => []
                 );
             }
         }
 
         public function read($params) {
-            $result = $this->bookModel->read($params);
+            $result = $this->newsModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book successfully!',
+                    'message' => 'Get new successfully!',
                     'data' => [$result]
                 );
             }
@@ -42,69 +42,29 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
-                    'data' => []
-                );
-            }
-        }
-
-        public function readAll($params) {
-            $result = $this->bookModel->readAll($params);
-            if (!empty($result)) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Get book list successfully!',
-                    'data' => $result
-                );
-            }
-            else {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'No book available!',
-                    'data' => []
-                );
-            }
-        }
-
-        public function readBookByName($params) {
-            $result = $this->bookModel->readBookByName($params);
-            if (!empty($result)) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Get books successfully!',
-                    'data' => $result
-                );
-            }
-            else {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'Get books failed!',
+                    'message' => 'New not found!',
                     'data' => []
                 );
             }
         }
 
         public function update($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->newsModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'New not found!',
                     'data' => []
                 );
             }
 
-            $result = $this->bookModel->update($params);
+            $result = $this->newsModel->update($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update book successfully!',
+                    'message' => 'Update new successfully!',
                     'data' => []
                 );
             }
@@ -112,29 +72,29 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update book failed!',
+                    'message' => 'Update new failed!',
                     'data' => []
                 );
             }
         }
 
         public function delete($params) {
-            $existed = $this->bookModel->read($params);
+            $existed = $this->newsModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Book not found!',
+                    'message' => 'New not found!',
                     'data' => []
                 );
             }
             
-            $result = $this->bookModel->delete($params);
+            $result = $this->newsModel->delete($params);
             if ($result) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete book successfully!',
+                    'message' => 'Delete new successfully!',
                     'data' => []
                 );
             }
@@ -142,7 +102,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete book failed!',
+                    'message' => 'Delete new failed!',
                     'data' => []
                 );
             }

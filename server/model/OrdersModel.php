@@ -61,7 +61,7 @@
             return $orders;
         }
 
-        // input: None
+        // input: user_id
         // output: list of all user's orders
         public function readByUserId($params) {
             $user_id = intval($params['user_id']);
@@ -141,7 +141,7 @@
 
         // input: None
         // output: id from last insert query
-        public function lastInsertId() {
+        public function lastInsertId($params = null) {
             return mysqli_insert_id($this->con);
         }
 

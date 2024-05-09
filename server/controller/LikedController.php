@@ -8,7 +8,12 @@
             $this->likedModel = new LikedModel();
         }
 
-        public function create($params) {
+        public function create($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+                'book_id' => $idRoute
+            ];
+            
             $result = $this->likedModel->create($params);
             if ($result) {
                 http_response_code(201);
@@ -28,7 +33,12 @@
             }
         }
 
-        public function read($params) {
+        public function read($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+                'book_id' => $idRoute
+            ];
+            
             $result = $this->likedModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -48,7 +58,11 @@
             }
         }
 
-        public function readByUserId($params) {
+        public function readByUserId($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id']
+            ];
+
             $result = $this->likedModel->readByUserId($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -68,7 +82,11 @@
             }
         }
 
-        public function readByBookId($params) {
+        public function readByBookId($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'book_id' => $idRoute
+            ];
+            
             $result = $this->likedModel->readByBookId($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -88,37 +106,12 @@
             }
         }
 
-        public function update($params) {
-            $existed = $this->likedModel->read($params);
-            if (empty($existed)) {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'Not found!',
-                    'data' => []
-                );
-            }
-
-            $result = $this->likedModel->update($params);
-            if ($result) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Update successfully!',
-                    'data' => []
-                );
-            }
-            else {
-                http_response_code(400);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'Update failed!',
-                    'data' => []
-                );
-            }
-        }
-
-        public function delete($params) {
+        public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+                'book_id' => $idRoute
+            ];
+            
             $existed = $this->likedModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);

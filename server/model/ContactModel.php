@@ -50,6 +50,22 @@
             return $contact;
         }
 
+        // input: None
+        // output: list of all contacts
+        public function readAll($params) {
+            $query = "SELECT * FROM CONTACT";
+            $result = mysqli_query($this->con, $query);
+
+            $contacts = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $contacts[] = $row;
+                }
+            }
+
+            return $contacts;
+        }
+
         // input: id --> Only update resolved status from admin
         // output: bool
         public function update($params) {

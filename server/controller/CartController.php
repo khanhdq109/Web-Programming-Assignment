@@ -8,7 +8,13 @@
             $this->cartModel = new CartModel();
         }
 
-        public function create($params) {
+        public function create($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+                'book_id' => $idRoute
+            ];
+            $params = array_merge($params, $postData);
+            
             $result = $this->cartModel->create($params);
             if ($result) {
                 http_response_code(201);
@@ -28,27 +34,11 @@
             }
         }
 
-        public function read($params) {
-            $result = $this->cartModel->read($params);
-            if (!empty($result)) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Get item successfully!',
-                    'data' => [$result]
-                );
-            }
-            else {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'Item not found!',
-                    'data' => []
-                );
-            }
-        }
-
-        public function readByUserId($params) {
+        public function readByUserId($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id']
+            ];
+            
             $result = $this->cartModel->readByUserId($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -68,7 +58,12 @@
             }
         }
  
-        public function update($params) {
+        public function update($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id']
+            ];
+            $params = array_merge($params, $postData);
+
             $existed = $this->cartModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
@@ -98,7 +93,12 @@
             }
         }
 
-        public function delete($params) {
+        public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+            ];
+            $params = array_merge($params, $postData);
+            
             $existed = $this->cartModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);

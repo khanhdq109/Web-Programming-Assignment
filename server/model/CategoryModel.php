@@ -74,22 +74,6 @@
             return $books;
         }
 
-        // input: book_id, category_name, new_category
-        // output: bool
-        public function update($params) {
-            $book_id = intval($params['book_id']); 
-            $category_name = mysqli_real_escape_string($this->con, $params['category_name']);
-            $new_category = mysqli_real_escape_string($this->con, $params['new_category']);
-
-            $query = "UPDATE CATEGORY SET
-                    category_name = '$new_category'
-                    WHERE
-                    book_id = $book_id AND category_name = '$category_name'";
-            $result = mysqli_query($this->con, $query);
-
-            return $result ? true : false;
-        }
-
         // input: book_id, category_name
         // output: bool
         public function delete($params) {

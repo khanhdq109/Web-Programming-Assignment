@@ -55,6 +55,38 @@
             return $user;
         }
 
+        // input: None
+        // output: list of all users
+        public function readAll($params) {
+            $query = "SELECT * FROM USER";
+            $result = mysqli_query($this->con, $query);
+
+            $users = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $users[] = $row;
+                }
+            }
+
+            return $users;
+        }
+
+        // input: user_name
+        // output: a matched user
+        public function readByUserName($params) {
+            $user_name = intval($params['user_name']);
+
+            $query = "SELECT * FROM USER WHERE user_name = $user_name";
+            $result = mysqli_query($this->con, $query);
+
+            $user = null;
+            if ($result && mysqli_num_rows($result) > 0) {
+                $user = mysqli_fetch_assoc($result);
+            }
+
+            return $user;
+        }
+
         // input: user_id, fullname, email, password, bday, point, avt_url
         // output: bool
         public function update($params) {
@@ -102,6 +134,23 @@
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;
+        }
+        
+        // input: user_name, password
+        public function validateUser($params) {
+            $user_name = $params['user_name'];
+            $password = $params['password'];
+
+            $query = "SELECT FROM USER WHERE user_name = '$user_name'";
+            $result = mysqli_query($this->con, $query);
+
+            $user = null;
+            if ($result && mysqli_num_rows($result) > 0) {
+                $user = mysqli_fetch_assoc($result);
+                return password_verify($password, $user['password']);
+            }
+
+            return false;
         }
 
         // input: user_id

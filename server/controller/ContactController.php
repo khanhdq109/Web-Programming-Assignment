@@ -8,7 +8,9 @@
             $this->contactModel = new ContactModel();
         }
 
-        public function create($params) {
+        public function create($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = $postData;
+
             $result = $this->contactModel->create($params);
             if ($result) {
                 http_response_code(201);
@@ -28,7 +30,11 @@
             }
         }
 
-        public function read($params) {
+        public function read($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+            
             $result = $this->contactModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -48,7 +54,33 @@
             }
         }
 
-        public function update($params) {
+        public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [];
+
+            $result = $this->contactModel->readAll($params);
+            if (!empty($result)) {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Get contact list successfully!',
+                    'data' => $result
+                );
+            }
+            else {
+                http_response_code(404);
+                return array(
+                    'status' => 'Fail',
+                    'message' => 'No contact found!',
+                    'data' => []
+                );
+            }
+        }
+
+        public function update($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+            
             $existed = $this->contactModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
@@ -78,7 +110,11 @@
             }
         }
 
-        public function delete($params) {
+        public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+            
             $existed = $this->contactModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);

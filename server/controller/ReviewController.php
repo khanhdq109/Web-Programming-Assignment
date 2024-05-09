@@ -8,7 +8,13 @@
             $this->reviewModel = new ReviewModel();
         }
 
-        public function create($params) {
+        public function create($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id'],
+                'book_id' => $idRoute
+            ];
+            $params = array_merge($params, $postData);
+            
             $result = $this->reviewModel->create($params);
             if ($result) {
                 http_response_code(201);
@@ -28,7 +34,11 @@
             }
         }
 
-        public function read($params) {
+        public function read($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'review_id' => $idRoute
+            ];
+
             $result = $this->reviewModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -48,7 +58,10 @@
             }
         }
 
-        public function readByUserId($params) {
+        // For admin only
+        public function readByUserId($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = $queryParams;
+            
             $result = $this->reviewModel->readByUserId($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -68,7 +81,35 @@
             }
         }
 
-        public function readByBookId($params) {
+        public function readMyReview($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'user_id' => $fromUser['id']
+            ];
+            
+            $result = $this->reviewModel->readByUserId($params);
+            if (!empty($result)) {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Get review list successfully!',
+                    'data' => $result
+                );
+            }
+            else {
+                http_response_code(404);
+                return array(
+                    'status' => 'Fail',
+                    'message' => 'No review found!',
+                    'data' => []
+                );
+            }
+        }
+
+        public function readByBookId($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'book_id' => $idRoute
+            ];
+            
             $result = $this->reviewModel->readByBookId($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -88,7 +129,22 @@
             }
         }
 
-        public function update($params) {
+        public function update($idRoute = null, $queryParams, $postData, $fromUser) {
+            $review = $this->reviewModel->read(['review_id' => $idRoute]);
+            if (intval($fromUser['id']) != $review['user_id']) {
+                http_response_code(401);
+                return array(
+                    'status' => 'Fail',
+                    'message' => 'You don\'t have permission to change this review!',
+                    'data' => []
+                );
+            }
+
+            $params = [
+                'review_id' => $idRoute
+            ];
+            $params = array_merge($params, $postData);
+            
             $existed = $this->reviewModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
@@ -118,7 +174,11 @@
             }
         }
 
-        public function delete($params) {
+        public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'review_id' => $idRoute
+            ];
+            
             $existed = $this->reviewModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);

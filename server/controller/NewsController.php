@@ -8,7 +8,9 @@
             $this->newsModel = new NewsModel();
         }
 
-        public function create($params) {
+        public function create($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = $postData;
+
             $result = $this->newsModel->create($params);
             if ($result) {
                 http_response_code(201);
@@ -28,7 +30,11 @@
             }
         }
 
-        public function read($params) {
+        public function read($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+
             $result = $this->newsModel->read($params);
             if (!empty($result)) {
                 http_response_code(200);
@@ -48,7 +54,34 @@
             }
         }
 
-        public function update($params) {
+        public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [];
+            
+            $result = $this->newsModel->readAll($params);
+            if (!empty($result)) {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Get new list successfully!',
+                    'data' => $result
+                );
+            }
+            else {
+                http_response_code(404);
+                return array(
+                    'status' => 'Fail',
+                    'message' => 'No new found!',
+                    'data' => []
+                );
+            }
+        }
+
+        public function update($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+            $params = array_merge($params, $postData);
+
             $existed = $this->newsModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
@@ -78,7 +111,11 @@
             }
         }
 
-        public function delete($params) {
+        public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = [
+                'id' => $idRoute
+            ];
+            
             $existed = $this->newsModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);

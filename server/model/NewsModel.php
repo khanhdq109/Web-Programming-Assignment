@@ -49,6 +49,22 @@
             return $new;
         }
 
+        // input: None
+        // output: list of all news
+        public function readAll($params) {
+            $query = "SELECT * FROM NEWS";
+            $result = mysqli_query($this->con, $query);
+
+            $news = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $news[] = $row;
+                }
+            }
+
+            return $news;
+        }
+
         // input: id, title, content, tag
         // output: bool
         public function update($params) {

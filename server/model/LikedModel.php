@@ -77,12 +77,6 @@
             return $users;
         }
 
-        // input: None --> Not neccessary
-        // output: bool
-        public function update($params) {
-            return true;
-        }
-
         // input: user_id, book_id
         // output: bool
         public function delete($params) {

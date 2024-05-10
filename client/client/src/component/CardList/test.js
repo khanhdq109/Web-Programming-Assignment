@@ -10,7 +10,7 @@ const Test = () => {
   }, []);
 
   function getBooks() {
-    fetch('http://localhost:80/api.php/book', {
+    fetch('http://localhost:80/api.php/book/read', {
       method: 'GET',
       credentials: 'include'
     })

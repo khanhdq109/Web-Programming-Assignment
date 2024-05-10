@@ -10,7 +10,7 @@ function Homepage() {
           <Slider />
         </div>
       </div>
-      <div className="row mt-4">
+      {/* <div className="row mt-4">
         <div className="col">
           <ButtonWithContent 
             icon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-percent" viewBox="0 0 16 16">
@@ -39,8 +39,8 @@ function Homepage() {
             content="Sach moi nhat"
           />
           {/* Thêm nút và nội dung tương ứng */}
-        </div>
-      </div>
+        {/* </div>  */}
+      {/* </div> */}
     </div>
   );
 }

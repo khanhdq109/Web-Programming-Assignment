@@ -37,6 +37,7 @@ export const Login = () => {
                         <Button variant="danger" type="submit">
                             Đăng nhập
                         </Button>
+                        <div className="mt-3">Bạn chưa có tài khoản? <a href="/" className="text-danger">Đăng ký tại đây</a></div>
                     </div>
                 </Form>
             </div>

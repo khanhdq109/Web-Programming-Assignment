@@ -54,9 +54,13 @@
         @include buttonStyle(none);
         background-color: transparent;
         margin: 0 8px;
-        transition: all .3s;
-        &:hover {
-            color: $headerTextHoverColor;
+        a {
+            color: #000;
+            text-decoration: none;
+            transition: all .3s;
+            &:hover {
+                color: $headerTextHoverColor;
+            }
         }
     }
 }

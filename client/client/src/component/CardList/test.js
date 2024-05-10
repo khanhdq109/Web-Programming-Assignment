@@ -1,48 +1,78 @@
 import React, { useState, useEffect } from 'react';
 
 const Test = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [books, setBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:80/api.php/book');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.error('There was a problem fetching the data:', error);
-      } finally {
-        setLoading(false);
+    getBooks();
+  }, []);
+
+  function getBooks() {
+    fetch('http://localhost:80/api.php/book', {
+      method: 'GET',
+      credentials: 'include'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-    };
+      return response.json();
+    })
+    .then(data => {
+      console.log(data.data);
+      if (Array.isArray(data.data)) {
+        setBooks(data.data);
+      } else {
+        setError(new Error('API response is not an array'));
+      }
+      setIsLoading(false);
+    })
+    .catch(error => {
+      console.error('Error fetching books:', error);
+      setError(error);
+      setIsLoading(false);
+    });
+  }
 
-    fetchData();
-  }, []); // Empty dependency array means this effect runs once after the initial render
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  if (books.length === 0) {
+    return <div>No books found.</div>;
+  }
+  
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          {data ? (
-            <div>
-              <h2>Books</h2>
-              <ul>
-                {data.map(book => (
-                  <li key={book.id}>{book.title}</li>
-                ))}
-              </ul>
-            </div>
-          ) : (
-            <p>No data available</p>
+      <h1>List of Books</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>On Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          {books.map((book, key) =>
+            <tr key={key}>
+              <td>{book.book_id}</td>
+              <td>{book.book_name}</td>
+              <td>{book.author}</td>
+              <td>{book.price}</td>
+              <td>{book.on_sale}%</td>
+            </tr>
           )}
-        </div>
-      )}
+        </tbody>
+      </table>
     </div>
   );
 };

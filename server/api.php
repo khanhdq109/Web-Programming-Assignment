@@ -2,7 +2,7 @@
     error_reporting(E_ERROR);
 
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: http://localhost:5173');
+    header('Access-Control-Allow-Origin: http://localhost:80');
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Allow-Credentials: true');
@@ -65,10 +65,10 @@
 
             if ($routeUserLevel <= $userLevel) {
                 require __DIR__ . '/controller/' . $controllerName . '.php';
-                $controller = new $controllerName;
+                $controller = new $controllerName();
 
                 $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-                echo json_encode($reponse);
+                echo json_encode($response);
             }
             else {
                 http_response_code(401);

@@ -102,7 +102,9 @@
             $params = [
                 'book_id' => $idRoute
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
             
             $existed = $this->bookModel->read($params);
             if (empty($existed)) {

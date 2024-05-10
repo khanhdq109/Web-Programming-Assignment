@@ -29,7 +29,48 @@
                 );
             }
 
-            $params = $postData;
+            $params = array_merge($postData, ['role' => 'user']);
+
+            $result = $this->userModel->create($params);
+            if ($result) {
+                http_response_code(201);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Register successfully!',
+                    'data' => []
+                );
+            }
+            else {
+                http_response_code(400);
+                return array(
+                    'status' => 'Fail',
+                    'message' => "Register failed!",
+                    'data' => []
+                );
+            }
+        }
+
+        public function registerAdmin($idRoute = null, $queryParams, $postData, $fromUser) {
+            // Pre-process and validate password
+            $postData['password'] = password_hash($postData['password'], PASSWORD_DEFAULT);
+            if (strlen($postData['password']) < 8) {
+                http_response_code(411);
+                return array(
+                    'status' => 'error',
+                    'message' => 'Password must have at least 8 characters long;'
+                );
+            }
+
+            // Pre-process and validate email
+            if (!filter_var($postData['email'], FILTER_VALIDATE_EMAIL)) {
+                http_response_code(406);
+                return array(
+                    'status' => 'error',
+                    'message' => 'Invalid email address!'
+                );
+            }
+
+            $params = array_merge($postData, ['role' => 'admin']);
 
             $result = $this->userModel->create($params);
             if ($result) {
@@ -52,7 +93,6 @@
 
         public function login($idRoute = null, $queryParams, $postData, $fromUser) {
             $username = $postData['user_name'];
-            $password = $postData['password'];
 
             if ($this->userModel->validateUser($postData)) {
                 $user = $this->userModel->readByUserName(['user_name' => $username]);
@@ -106,7 +146,9 @@
         }
 
         public function read($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = $queryParams;
+            $params = [
+                'user_id' => $idRoute
+            ];
 
             $result = $this->userModel->read($params);
             if (!empty($result)) {

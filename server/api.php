@@ -42,11 +42,11 @@
 
     $routes = [
         // Book
-        'POST /api.php/book/create' => 'BookController@create@2',                               // Add book to database: book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url
+        'POST /api.php/book/create' => 'BookController@create@2',                               // Add book to database: book_name, author, publisher, page_number, publication_date, language, description, price, book_cover, img_url
         'GET /api.php/book/read/(\d+)' => 'BookController@read@0',                              // Read book by id: book_id
         'GET /api.php/book/read' => 'BookController@readAll@0',                                 // Read list of all books: None
         'GET /api.php/book/search' => 'BookController@readBookByName@0',                        // Search book by name: book_name
-        'PATCH /api.php/book/update/(\d+)' => 'BookController@update@2',                        // Update book information: book_id, book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url
+        'PATCH /api.php/book/update/(\d+)' => 'BookController@update@0',                        // Update book information: book_id, book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url
         'DELETE /api.php/book/delete/(\d+)' => 'BookController@delete@2',                       // Delete book from database: book_id
 
         // Cart
@@ -101,6 +101,16 @@
         'DELETE /api.php/review/update/(\d+)' => 'ReviewController@delete@1',                   // Delete a review: review_id
 
         // User
+        'POST /api.php/auth/register' => 'UserController@register@0',                           // Register for normal user: user_name, fullname, email, password, bday, avt_url
+        'POST /api.php/auth/registerAdmin' => 'UserController@registerAdmin@0',                 // Register for admin: user_name, fullname, email, password, bday, avt_url
+        'POST /api.php/auth/login' => 'UserController@login@0',                                 // Login: user_name, password
+        'GET /api.php/auth/logout' => 'UserController@logout@1',                                // Logout: None
+        'GET /api.php/user/read/(\d+)' => 'UserController@read@0',                              // Read a specific user profile: user_id
+        'GET /api.php/user/read' => 'UserController@readAll@2',                                 // Read all user's profiles (for only admin): None
+        'GET /api.php/user/myProfile' => 'UserController@readMyProfile@1',                      // Read user's profile: user_id
+        'PATCH /api.php/user/update' => 'UserController@update@1',                              // Update user's profile: user_id, fullname, bday, avt_url
+        'PATCH /api.php/user/updatePoint/(\d+)' => 'UserController@updatePoint@2',              // Update user's promotion point (for only admin / or automatically): user_id, point
+        'DELETE /api.php/user/delete/(\d+)' => 'UserController@delete@2',                       // Delete user
     ];
 
     $routeKey = $method . ' ' . $request;

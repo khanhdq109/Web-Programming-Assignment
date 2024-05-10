@@ -1,8 +1,7 @@
 import React from 'react';
-import { Main } from './pages/admin/Layout/Main';
-import { Login } from './pages/admin/Login/Login';
 import MainGuest from './pages/guest/main';
-import { Register } from './pages/admin/Login/Register';
+import { Header } from './pages/admin/Header/Header';
+import { Dashboard } from './pages/admin/Dashboard/Dashboard';
 
 
 function App() {
@@ -13,10 +12,8 @@ function App() {
           <main>
             <Homepage />
           </main> */}
-          {/* <MainGuest /> */}
-          <Main>
-            <Register />
-          </Main>
+          <Header />
+          <MainGuest />
         </div>
       );
     }    

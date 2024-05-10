@@ -2,6 +2,7 @@ import { faRegistered, faRightToBracket } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import '../../pages/admin/assets/scss/Header.scss'
 
 export const MainNav = () => {
 
@@ -25,7 +26,7 @@ export const MainNav = () => {
                         <li><Link className="header-bottom-nav-link" to="/all">Sản phẩm</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/news">Tin tức</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/contact">Liên hệ</Link></li>
-                        <li><Link className="header-bottom-nav-link" to="/login">Quản trị viên</Link></li>
+                        <li><Link className="header-bottom-nav-link" to="/dashboard">Quản trị viên</Link></li>
                     </ul>
                 </nav>
                 <div className="header-bottom-auth-btns">

@@ -1,19 +1,21 @@
 import React from 'react';
+import { Main } from './pages/admin/Layout/Main';
+import { Login } from './pages/admin/Login/Login';
 import MainGuest from './pages/guest/main';
-import { Header } from './pages/admin/Header/Header';
-import { Dashboard } from './pages/admin/Dashboard/Dashboard';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Register } from './pages/admin/Login/Register';
 
 
 function App() {
     return (
         <div className="App">
-          {/* Sau này chỗ này cần tạo router và layout để quản lý việc chuyển trang */}
-          {/* <Header/>
-          <main>
-            <Homepage />
-          </main> */}
-          <Header />
-          <MainGuest />
+          <Main>
+          <Routes>
+            <Route path="/login" element={<Login />} />  {/* Login route */}
+            <Route path="/register" element={<Register />} />  {/* Register route */}
+            <Route path="/*" element={<MainGuest />} />  {/* Guest interface as default route */}
+          </Routes>
+          </Main>
         </div>
       );
     }    

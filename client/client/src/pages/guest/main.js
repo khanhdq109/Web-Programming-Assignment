@@ -9,6 +9,8 @@ import Homepage from './homepage';
 import CartOrder from './CartOder';
 import ProfilePage from './Profile';
 import ProductDetail from '../../component/ProductDetail/ProductDetail';
+import { Login } from '../admin/Login/Login';
+import { MainNav } from '../../component/MainNav/MainNav';
 
 function MainGuest() {
   return (
@@ -23,7 +25,7 @@ function MainGuest() {
           </nav>
         </div>
         <div className="col-md-9">
-          <Sidebar />
+          <MainNav />
           <div className="main-content" style={{ margin: '5px', marginBottom: '0' }}>
             <Routes>
               <Route path="/" exact element={<Homepage />} />
@@ -33,6 +35,7 @@ function MainGuest() {
               <Route path="/order" exact element={<CartOrder/>} />
               <Route path="/profile" exact element={<ProfilePage/>} />
               <Route path="/product/detail" exact element={<ProductDetail/>} />
+              <Route path="/login" element={<Login/>} />
               {/* Define routes for different categories */}
               <Route path="/all" element={<CardList category="all" />} />
               <Route path="/khoa-hoc" element={<CardList category="Khoa Học" />} />

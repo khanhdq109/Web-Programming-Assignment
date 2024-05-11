@@ -7,7 +7,7 @@ import map from './imgs/map.png'
 function Footer() {
     return (
         <footer>
-            <div className="box-container">
+            <div className="box-container bg-light">
                 <div className="box box-tilte">
                     <div className='style-border-top'></div>
                     <div className='style-border-bottom'></div>
@@ -24,10 +24,10 @@ function Footer() {
                 </div>
                 <div className="box box-links">
                     <h3>Quick Links</h3>
-                    <div className='link-items'><CaretRightOutlined className='color-orange' /><Link className='links' to=''>Home</Link></div>
-                    <div className='link-items'><CaretRightOutlined className='color-orange' /><Link className='links' to=''>Product</Link></div>
+                    <div className='link-items'><Link className='links' to=''>Home</Link></div>
+                    <div className='link-items'><Link className='links' to=''>Product</Link></div>
                    
-                    <div className='link-items'><CaretRightOutlined className='color-orange' /><Link className='links' to=''>Contact</Link></div>
+                    <div className='link-items'><Link className='links' to=''>News</Link></div>
                     
                 </div>
             </div>

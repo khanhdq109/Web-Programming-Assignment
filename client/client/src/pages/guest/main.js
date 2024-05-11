@@ -11,6 +11,11 @@ import ProfilePage from './Profile';
 import ProductDetail from '../../component/ProductDetail/ProductDetail';
 import { Login } from '../admin/Login/Login';
 import { MainNav } from '../../component/MainNav/MainNav';
+import Searchbook from '../../component/SearchCard/search';
+import Footer from '../../component/Footer/Footer';
+import News from './news';
+import { useParams } from 'react-router-dom';
+import { getUserId } from '../../component/AutheUser';
 
 function MainGuest() {
   return (
@@ -30,15 +35,14 @@ function MainGuest() {
           </nav>
         </div>
         <div className="col-md-9">
-          <MainNav />
-          <div className="main-content" style={{ margin: '5px', marginBottom: '0' }}>
+          <MainNav user_id={getUserId()}/>
+          <div className="main-content" style={{ margin: '5px', marginBottom: '0',width: '100%', height: '75vh' }}>
             <Routes>
               <Route path="/" exact element={<Homepage />} />
               <Route path="/home" exact element={<Homepage />} />
-              <Route path="/news" exact element={<Test />} />
-              <Route path="/contact" exact element={<Test />} />
-              <Route path="/order" exact element={<CartOrder/>} />
-              <Route path="/profile" exact element={<ProfilePage/>} />
+              <Route path="/news" exact element={<News />} />
+              <Route path="/order/:user_id" element={<CartOrder/>} />
+              <Route path="/profile/:user_id" element={<ProfilePage />} />  
               <Route path="/product/detail/:book_id" element={<ProductDetail />} />
               {/* Define routes for different categories */}
               <Route path="/all" element={<CardList category="all" />} />
@@ -50,11 +54,14 @@ function MainGuest() {
               <Route path="/Business" element={<CardList category="Business" />} />
               <Route path="/Inspiration" element={<CardList category="Inspiration" />} />
               {/* Add more routes for other categories */}
+
+              <Route path="/search/:query" element={<Searchbook />} />
             </Routes>
           </div>
           
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

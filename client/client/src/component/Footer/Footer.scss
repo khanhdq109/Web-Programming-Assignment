@@ -1,6 +1,6 @@
 footer{
     background: #fff;
-    padding-left: 11.5rem;
+    padding-left: 3rem;
     padding-top: 5rem;
     box-shadow: var(--box-shadow);
 }
@@ -23,7 +23,7 @@ footer .box-container .box{
 footer .box-container .box-tilte{
     
     width: 300px;
-    margin-right: 80px;
+    margin-right: 50px;
     position: relative;
     padding: 10px;
 }
@@ -50,7 +50,7 @@ footer .box-container .box-tilte .style-border-bottom{
 }
 
 footer .box-container .box h3{
-    font-size: 2rem;
+    font-size: 1rem;
     margin-bottom: 20px;
 }
 footer .box-container .box .tilte{
@@ -65,17 +65,17 @@ footer .box-container .box .box-contact{
     margin-top: 10px;
     display: flex;
     flex-direction: row;
-    font-size: 1.5rem;
+    font-size: 0,5rem;
 }
 footer .box-container .box .box-contact .icons-g{
     margin-right: 10px;
 }
 footer .box-container .box .icons-contact{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 footer .box-container .box .icons-contact .icons-g{
-    font-size: 2rem;
+    font-size: 1rem;
     margin-right: 10px;
     height: 3.6rem;
     width: 4rem;
@@ -92,15 +92,15 @@ footer .box-container .box .icons-contact .icons-g:hover{
 
 footer .box-container .box p{
     color: var(--black);
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 footer .box-container .box .link-items{
-    font-size: 1.5rem;
-    margin-top: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
 }
 footer .box-container .box .link-items .links{
-    margin-left: 10px;
+    margin-left: 5px;
     color: var(--black);
 }
 footer .box-container .box .link-items .links:hover{

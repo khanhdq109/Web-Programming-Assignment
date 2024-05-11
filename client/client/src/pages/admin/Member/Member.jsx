@@ -1,10 +1,12 @@
 import React from 'react'
 import { Table } from 'react-bootstrap'
 import { Sidebar } from '../Sidebar/Sidebar'
+import { AdminNav } from '../../../component/AdminNav/AdminNav'
 
 export const Member = () => {
     return (
         <div className="container">
+            <AdminNav />
             <div className="row">
                 <div className="col-3">
                     <Sidebar />

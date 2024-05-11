@@ -287,6 +287,24 @@
             }
         }
 
+        public function updatePassword($idRoute = null, $queryParams, $postData, $fromUser) {
+            http_response_code(501);
+            return array(
+                'status' => 'Fail',
+                'message' => 'The feature is under development!',
+                'data' => []
+            );
+        }
+
+        public function forgetPassword($idRoute = null, $queryParams, $postData, $fromUser) {
+            http_response_code(501);
+            return array(
+                'status' => 'Fail',
+                'message' => 'The feature is under development!',
+                'data' => []
+            );
+        }
+
         public function delete($idRoute = null, $queryParams, $postData, $fromUser) {
             $params = [
                 'user_id' => $idRoute

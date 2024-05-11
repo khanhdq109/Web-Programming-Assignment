@@ -2,7 +2,7 @@
     error_reporting(E_ERROR);
 
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: http://localhost:3000');
+    header('Access-Control-Allow-Origin: http://localhost:80');
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Content-Type');
     header('Access-Control-Allow-Credentials: true');
@@ -76,7 +76,7 @@
         'DELETE /api.php/liked/delete/(\d+)' => 'LikedController@delete@1',                     // Unlike a specific book: user_id, book_id
 
         // News
-        'POST /api.php/news/create' => 'NewsController@create@2',                               // Create a new: title, content, tag
+        'POST /api.php/news/create' => 'NewsController@create@0',                               // Create a new: title, content, tag
         'GET /api.php/news/read/(\d+)' => 'NewsController@read@0',                              // Read a specific news: id
         'GET /api.php/news/read' => 'NewsController@readAll@0',                                 // Read list of all news: None
         'PATCH /api.php/news/update/(\d+)' => 'NewsController@update@2',                        // Update news: id, title, content, tag

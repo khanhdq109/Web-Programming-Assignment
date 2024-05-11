@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../model/NewsModel.php';
 
-    class BookController {
+    class NewsController {
         private $newsModel;
 
         public function __construct() {

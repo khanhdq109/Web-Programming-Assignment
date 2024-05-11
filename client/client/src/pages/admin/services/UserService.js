@@ -32,6 +32,14 @@ export class UserService {
         return await response.json();
     }
 
+    async deleteUser(userId) {
+        const response = await fetch(`${API_URL}/user/delete/${userId}`, {
+            method: 'DELETE',
+            headers: API_HEADERS,
+        });
+        return await response.json();
+    }
+
     async findAll() {
         const response = await fetch(`${API_URL}/user/read`);
         return await response.json();

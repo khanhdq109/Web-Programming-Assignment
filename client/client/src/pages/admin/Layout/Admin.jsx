@@ -11,7 +11,6 @@ export const Admin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {   
-        console.log(location.pathname);
         if(localStorage.getItem('admin') == null && location.pathname !== '/admin/register') {
             navigate('/admin/login');
         } 

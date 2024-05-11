@@ -1,9 +1,10 @@
 import { faBagShopping, faComment, faEye, faWallet } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import '../assets/scss/Dashboard.scss'
-import { Table } from "react-bootstrap"
 import { useEffect, useRef } from "react"
+import { Table } from "react-bootstrap"
+import { AdminNav } from "../../../component/AdminNav/AdminNav"
 import { Sidebar } from "../Sidebar/Sidebar"
+import '../assets/scss/Dashboard.scss'
 
 export const Dashboard = () => {
     const tbodyRef = useRef();
@@ -27,6 +28,7 @@ export const Dashboard = () => {
 
     return (
         <div className="container">
+        <AdminNav />
             <div className="row">
                 <div className="col-3">
                     <Sidebar />

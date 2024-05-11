@@ -17,19 +17,9 @@
             $email = mysqli_real_escape_string($this->con, $params['email']);
             $password = mysqli_real_escape_string($this->con, $params['password']);
             $bday = mysqli_real_escape_string($this->con, $params['bday']);
-            if (isset($params['role'])) {
-                $role = mysqli_real_escape_string($this->con, $params['role']);
-            }
-            else {
-                $role = mysqli_real_escape_string($this->con, 'user');
-            }
-            if (isset($params['avt_url'])) {
-                $avt_url = mysqli_real_escape_string($this->con, $params['avt_url']);
-            }
-            else {
-                $avt_url = mysqli_real_escape_string($this->con, 'default.jpg');
-            }
-
+            $role = isset($params['role']) ? mysqli_real_escape_string($this->con, $params['role']) : mysqli_real_escape_string($this->con, 'user');
+            $avt_url = isset($params['avt_url']) ? mysqli_real_escape_string($this->con, $params['avt_url']) : mysqli_real_escape_string($this->con, 'default.jpg');
+            
             $query = "INSERT INTO USER
                     (user_name, fullname, email, password, bday, role, avt_url)
                     VALUES

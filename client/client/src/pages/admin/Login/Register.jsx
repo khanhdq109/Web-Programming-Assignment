@@ -1,7 +1,8 @@
-import { Container, Row, Col, Card, Form, Button, FloatingLabel } from 'react-bootstrap';
+import { Container, Row, Col, Card, Form, Button, FloatingLabel, Alert } from 'react-bootstrap';
 import '../assets/scss/Register.scss'
 import { useState } from 'react';
 import { UserService } from '../services/UserService';
+import { Link } from 'react-router-dom'
 export const Register = () => {
 
     const [username, setUsername] = useState("");
@@ -9,6 +10,11 @@ export const Register = () => {
     const [fullName, setFullName] = useState("");
     const [password, setPassword] = useState("");
     const [repeat, setRepeat] = useState("");
+    const [date, setDate] = useState();
+    const [register, setRegister] = useState({
+        isAction: false,
+        isRegistered: false,
+    });
 
     const handleUsernameChange = e => {
         setUsername(e.target.value);
@@ -30,14 +36,28 @@ export const Register = () => {
         setRepeat(e.target.value);
     }
 
+    const handleDateChange = e => {
+        setDate(e.target.value);
+    }
+
     const handleSubmitForm = async e => {
         e.preventDefault();
+        console.log({ date });
         const userService = new UserService();
-        if(password === repeat) {
-            const json = await userService.adminRegister(username, email, fullName, password);
-            console.log(json);
+        if (password === repeat) {
+            const json = await userService.adminRegister(username, email, fullName, date, password);
+            if (json.status === 'Success')
+                setRegister({
+                    isAction: true,
+                    isRegistered: true,
+                });
+            else
+                setRegister({
+                    isAction: true,
+                    isRegistered: false,
+                });
         }
-            
+
     }
 
     return (
@@ -51,6 +71,15 @@ export const Register = () => {
                                     <Col md={10} lg={6} xl={5} order={2} order-lg={1}>
                                         <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 text-uppercase" style={{ color: '#626262' }}>Đăng ký</p>
                                         <Form onSubmit={handleSubmitForm} id="floatingInput" className="mx-1 mx-md-4">
+                                            {!!register.isAction && (
+                                                <Alert variant={register.isRegistered ? "success" : "danger"}>
+                                                    {register.isRegistered ? (
+                                                        <>
+                                                            <span>Đăng ký thành công <Link to="/admin/login">Đi đến trang đăng nhập</Link></span>
+                                                        </>
+                                                    ) : "Trùng tên đăng nhập hoặc email"}
+                                                </Alert>
+                                            )}
                                             <FloatingLabel controlId="floatingInput" label="Username">
                                                 <Form.Control type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
                                             </FloatingLabel>
@@ -61,6 +90,10 @@ export const Register = () => {
 
                                             <FloatingLabel controlId="floatingInput" label="Họ và tên">
                                                 <Form.Control type="text" placeholder="Họ và tên" value={fullName} onChange={handleFullNameChange} />
+                                            </FloatingLabel>
+
+                                            <FloatingLabel controlId="floatingInput" label="Ngày sinh">
+                                                <Form.Control type="date" placeholder="Ngày sinh" value={date} onChange={handleDateChange} />
                                             </FloatingLabel>
 
                                             <FloatingLabel controlId="floatingInput" label="Password">
@@ -75,6 +108,7 @@ export const Register = () => {
                                                 <Button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-danger btn-lg">Đăng ký</Button>
                                             </div>
 
+                                            <div className="pb-3">Bạn đã có tài khoản? <Link to="/admin/login">Đăng nhập tại đây</Link></div>
                                         </Form>
 
                                     </Col>

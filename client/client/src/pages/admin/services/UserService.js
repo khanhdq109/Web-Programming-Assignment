@@ -28,6 +28,12 @@ export class UserService {
                 'password': password,
             })
         });
+        
+        return await response.json();
+    }
+
+    async findAll() {
+        const response = await fetch(`${API_URL}/user/read`);
         return await response.json();
     }
 }

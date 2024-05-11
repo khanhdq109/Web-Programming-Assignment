@@ -144,21 +144,28 @@
 
             $params = array_slice($matches, 1)[0];
 
-            if ($routeUserLevel <= $userLevel) {
-                require __DIR__ . '/controller/' . $controllerName . '.php';
-                $controller = new $controllerName();
+            require __DIR__ . '/controller/' . $controllerName . '.php';
+            $controller = new $controllerName();
 
-                $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-                echo json_encode($response);
-            }
-            else {
-                http_response_code(401);
-                echo json_encode([
-                    'status' => 'Unauthorized',
-                    'message' => 'You do not have permission to access this resource!',
-                    'data' => []
-                ]);
-            }
+            $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
+            echo json_encode($response);
+
+            // Comment to test api
+            // if ($routeUserLevel <= $userLevel) {
+            //     __DIR__ . '/controller/' . $controllerName . '.php';
+            //     $controller = new $controllerName();
+    
+            //     $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
+            //     echo json_encode($response);
+            // }
+            // else {
+            //     http_response_code(401);
+            //     echo json_encode([
+            //         'status' => 'Unauthorized',
+            //         'message' => 'You do not have permission to access this resource!',
+            //         'data' => []
+            //     ]);
+            // }
 
             exit;
         }

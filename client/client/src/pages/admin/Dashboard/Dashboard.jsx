@@ -3,6 +3,7 @@ import { Button, Table } from 'react-bootstrap';
 import BookService from '../services/BookService';
 import { Sidebar } from '../Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
+import { AdminNav } from '../../../component/AdminNav/AdminNav';
 
 export const Dashboard = () => {
     const [books, setBooks] = useState([]);
@@ -33,6 +34,7 @@ export const Dashboard = () => {
 
     return (
         <div className='container'>
+            <AdminNav />
             <div className="row">
                 <div className="col-3">
                     <Sidebar />

@@ -30,14 +30,14 @@ export const MainNav = () => {
                 </nav>
                 <div className="header-bottom-auth-btns">
                     <button>
-                        <Link to="/login">
+                        <Link to="/guest/login">
                             <FontAwesomeIcon icon={faRightToBracket} />
                             <span>Đăng nhập</span>
                         </Link>
                     </button>
 
                     <button>
-                        <Link to="/register">
+                        <Link to="/guest/register">
                             <FontAwesomeIcon icon={faRegistered} />
                             <span>Đăng ký</span>
                         </Link>

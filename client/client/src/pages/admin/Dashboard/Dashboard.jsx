@@ -11,9 +11,20 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 export const Dashboard = () => {
     const [books, setBooks] = useState([]);
     const [news, setNews] = useState([]);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState();
     const ulRef = useRef();
     const tabContentRef = useRef();
+
+    useEffect(() => {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const tabParam = urlSearchParams.get('tab');
+        if (tabParam) {
+            const index = parseInt(tabParam);
+            setActiveIndex(index);
+        } else {
+            setActiveIndex(0);
+        }
+    }, []);
 
     useEffect(() => {
         const fecthData = async () => {
@@ -71,7 +82,7 @@ export const Dashboard = () => {
         }
     };
 
-    const deleteNews = async(id) => {
+    const deleteNews = async (id) => {
         const newService = new NewService();
         const json = await newService.deleteNews(id);
         console.log(json);

@@ -53,7 +53,7 @@ export const EditNews = () => {
         console.log(json);
         if (json.status === 'Success') {
             alert('Update news successfully');
-            navigate('/admin/dashboard')
+            navigate('/admin/dashboard?tab=1')
         } else {
             alert('Update news failed');
         }

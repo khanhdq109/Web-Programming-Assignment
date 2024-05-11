@@ -19,9 +19,7 @@ import {
 
 export default function CartOrder() {
 
-
-
-
+  const { user_id } = useParams();
 
   return (
     <section className="h-100 h-custom">
@@ -147,7 +145,7 @@ export default function CartOrder() {
                   <MDBRow>
                     <MDBCol size="12" xl="6">
                       <MDBInput
-                        className="mb-4 mb-xl-5"
+                        className="mb-4 mb-xl-1"
                         label="Name on card"
                         placeholder="John Smiths"
                         size="lg"
@@ -155,7 +153,7 @@ export default function CartOrder() {
                     </MDBCol>
                     <MDBCol size="12" xl="6">
                       <MDBInput
-                        className="mb-4 mb-xl-5"
+                        className="mb-4 mb-xl-1"
                         label="Card Number"
                         placeholder="1111 2222 3333 4444"
                         size="lg"
@@ -163,6 +161,16 @@ export default function CartOrder() {
                         maxlength="19"
                       />
                     </MDBCol>
+                  </MDBRow>
+                  <MDBRow className="pt-4">
+                    <MDBCol size="25" xl="10">
+                        <MDBInput
+                          className="mb-4 mb-xl-1"
+                          label="Address"
+                          placeholder=""
+                          size="lg"
+                        />
+                      </MDBCol>
                   </MDBRow>
                 </MDBCol>
                 <MDBCol lg="4" xl="3">

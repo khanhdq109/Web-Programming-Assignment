@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { setUserId } from '../../../component/AutheUser';
 
 function LoginGuest() {
 
@@ -12,6 +13,8 @@ function LoginGuest() {
         email: '',
         password: '',
       });
+    
+      const navigate = useNavigate();
 
       const handleChange = (event) => {
         setFormData({ ...formData, [event.target.type]: event.target.value });
@@ -29,8 +32,10 @@ function LoginGuest() {
       
           if (response.ok) { // Assuming successful login returns status code in the 200 range
             const data = await response.json();
+            setUserId(data.data[0].user_id)
             // Handle successful login (e.g., store JWT token, redirect to protected area)
-            console.log('Login successful!', data);
+            navigate(`/home`);
+            
             // Implement logic to store JWT token (if applicable) and navigate to protected area
           } else {
             const errorData = await response.json();

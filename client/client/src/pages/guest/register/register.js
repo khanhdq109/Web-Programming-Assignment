@@ -19,7 +19,7 @@ function RegisterGuest() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: '',
+    user_name: '',
     email: '',
     fullname: '',
     password: '',
@@ -34,6 +34,7 @@ function RegisterGuest() {
     event.preventDefault(); // Prevent default form submission behavior
     
     try {
+        console.log(formData);
       const response = await fetch('http://localhost:80/api.php/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -42,7 +43,6 @@ function RegisterGuest() {
   
       if (response.ok) { // Assuming successful registration returns status code in the 200 range
         console.log('Registration successful!');
-  
         navigate('/guest/login'); 
       } else {
         const errorData = await response.json(); // Parse error details from response

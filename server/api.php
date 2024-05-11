@@ -1,26 +1,11 @@
 <?php
     error_reporting(E_ERROR);
 
-    if (isset($_SERVER['HTTP_ORIGIN'])) {
-        // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
-        // you want to allow, and if so:
-        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-    }
-    
-    // Access-Control headers are received during OPTIONS requests
-    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-        
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-            // may also be using PUT, PATCH, HEAD etc
-            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-        
-        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    
-        exit(0);
-    }
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: http://localhost:80');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    header('Access-Control-Allow-Credentials: true');
 
     $request = $_SERVER['REQUEST_URI'];
     $method = $_SERVER['REQUEST_METHOD'];
@@ -72,10 +57,8 @@
 
         // Category
         'POST /api.php/category/create/(\d+)' => 'CategoryController@create@2',                 // Add category to a specific book: book_id, category_name
-        'GET /api.php/category/allCategories' => 'CategoryController@readAllCategories@0',      // Read list of all unique categories: None
         'GET /api.php/category/readCategories/(\d+)' => 'CategoryController@readByBookId@0',    // Read all categories of a specific book: book_id
         'GET /api.php/category/readBooks' => 'CategoryController@readByCategory@0',             // Read all the books of a specific category: category_name
-        'GET /api.php/categories' => 'CategoryController@readAll@0',             // Read all the books of a specific category: category_name
         'DELETE /api.php/category/delete/(\d+)' => 'CategoryController@delete@2',               // Delete a category from a specific book: book_id, category_name
 
         // Contact
@@ -146,28 +129,21 @@
 
             $params = array_slice($matches, 1)[0];
 
-            require __DIR__ . '/controller/' . $controllerName . '.php';
-            $controller = new $controllerName();
+            if ($routeUserLevel <= $userLevel) {
+                require __DIR__ . '/controller/' . $controllerName . '.php';
+                $controller = new $controllerName();
 
-            $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-            echo json_encode($response);
-
-            // Comment to test api
-            // if ($routeUserLevel <= $userLevel) {
-            //     __DIR__ . '/controller/' . $controllerName . '.php';
-            //     $controller = new $controllerName();
-    
-            //     $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-            //     echo json_encode($response);
-            // }
-            // else {
-            //     http_response_code(401);
-            //     echo json_encode([
-            //         'status' => 'Unauthorized',
-            //         'message' => 'You do not have permission to access this resource!',
-            //         'data' => []
-            //     ]);
-            // }
+                $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
+                echo json_encode($response);
+            }
+            else {
+                http_response_code(401);
+                echo json_encode([
+                    'status' => 'Unauthorized',
+                    'message' => 'You do not have permission to access this resource!',
+                    'data' => []
+                ]);
+            }
 
             exit;
         }

@@ -43,6 +43,15 @@
             }
         }
 
+        public function readAllCategories($idRoute = null, $queryParams, $postData, $fromUser) {
+            http_response_code(501);
+            return array(
+                'status' => 'Fail',
+                'message' => 'The feature is under development!',
+                'data' => []
+            );
+        }
+
         public function readByBookId($idRoute = null, $queryParams, $postData, $fromUser) {
             $params = [
                 'book_id' => $idRoute

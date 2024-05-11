@@ -57,6 +57,7 @@
 
         // Category
         'POST /api.php/category/create/(\d+)' => 'CategoryController@create@2',                 // Add category to a specific book: book_id, category_name
+        'GET /api.php/category/allCategories' => 'CategoryController@readAllCategories@0',      // Read list of all unique categories: None
         'GET /api.php/category/readCategories/(\d+)' => 'CategoryController@readByBookId@0',    // Read all categories of a specific book: book_id
         'GET /api.php/category/readBooks' => 'CategoryController@readByCategory@0',             // Read all the books of a specific category: category_name
         'DELETE /api.php/category/delete/(\d+)' => 'CategoryController@delete@2',               // Delete a category from a specific book: book_id, category_name

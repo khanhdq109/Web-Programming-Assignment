@@ -116,27 +116,7 @@ CREATE TABLE ORDER_ITEM (
   FOREIGN KEY (book_id) REFERENCES BOOK(book_id) ON DELETE CASCADE
 );
 
-/*ADMIN*/
-INSERT INTO USER (email, user_name, password, role, fullname)
-VALUES ('admin@example.com', 'admin', 'admin', 'admin', 'Original Admin');
-
-/*USERS*/
-INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('john@example.com', 'datduong', 'datduong', 'user', 'Tien Dat', '1990-01-01', 0, NULL);
-
-INSERT INTO USER (email, user_name, password, role, fullname, bday, point,avt_url)
-VALUES ('lisa@example.com', 'diuquang', 'diuquang', 'user', 'Diu Quang', '2001-02-09',0, NULL);
-
-INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('sam@example.com', 'quangkhanh', 'quangkhanh', 'user', 'Quang Khanh', '1995-08-15', 0, NULL);
-
-INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('jane@example.com', 'quockhanh', 'quockhanh', 'admin', 'Quoc Khanh', '1985-05-23', 0, NULL);
-
-INSERT INTO USER (email, user_name, password, role, fullname, bday, point, avt_url)
-VALUES ('jim@example.com', 'jimbrown', '$2y$10$DVqz9I7oFKR', 'user', 'Jim Brown', '1982-12-31', 0, NULL);
-
-/*BOOK*/
+/* BOOK */
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description, on_sale)
 VALUES ('Lyrics of the Lalala Musical', 24.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-01.jpg', 'Amanda Smith', 'Hardcover' , 256, 'Penguin Books', 'English', '2022-01-01', 'This is the official songbook for the hit musical "Lalala". It includes all of the lyrics from the show, as well as exclusive behind-the-scenes photos and commentary from the writers and performers. Perfect for fans of the show or anyone who loves musical theater!', 10);
 
@@ -185,7 +165,7 @@ VALUES ('5-Minute Stories', 9.99, 'https://demo.tokopress.com/bookie/wp-content/
 INSERT INTO BOOK (book_name, price, img_url, author, book_cover, page_number, publisher, language, publication_date, description, on_sale)
 VALUES ('The Forgotten Garden', 11.99, 'https://demo.tokopress.com/bookie/wp-content/uploads/sites/7/2016/06/book-17.jpg', 'Anne Doe', 'Hardcover', 560, 'Washington Square Press', 'English', '2009-02-03', 'A mysterious and enchanting novel about a woman who discovers a long-hidden family secret while searching for her roots.', 50);
 
-/*CATEGORY*/
+/* CATEGORY */
 INSERT INTO CATEGORY (category_name, book_id)
 VALUES
     ('Drama', 1),
@@ -207,7 +187,7 @@ VALUES
     ('Life Style', 15),
     ('Business', 16);
 
-/*REVIEW*/
+/* REVIEW */
 INSERT INTO REVIEW (rating, review, user_id,  book_id)
 VALUES (4, 'I really enjoyed this book and would definitely recommend it to others!', 2, 1);
 
@@ -238,7 +218,7 @@ VALUES (2, 'I didn\'t really enjoy this book. It was too predictable for my liki
 INSERT INTO REVIEW (rating, review, user_id,  book_id)
 VALUES (5, 'This book was fantastic! I couldn\'t put it down and would definitely read it again.', 6, 15);
 
-/*NEWS*/
+/* NEWS */
 INSERT INTO NEWS (title, publish_date, tag, content, img)
 VALUES ('Everything You Need To Know About Blogging', '2015-06-28', 'DREAM, IDEA, NOVEL', 'People communicate differently than they used to thanks to technology that didn’t exist before. Blogging is hot right now, and this article can help you to take advantage of that.
 

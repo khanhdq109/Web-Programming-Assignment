@@ -11,7 +11,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-            header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE OPTIONS");
+            header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
 
         if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
             header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
@@ -141,21 +141,22 @@
 
             $params = array_slice($matches, 1)[0];
 
-            if ($routeUserLevel <= $userLevel) {
-                require __DIR__ . '/controller/' . $controllerName . '.php';
-                $controller = new $controllerName();
+            require __DIR__ . '/controller/' . $controllerName . '.php';
+            $controller = new $controllerName();
 
-                $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-                echo json_encode($response);
-            }
-            else {
-                http_response_code(401);
-                echo json_encode([
-                    'status' => 'Unauthorized',
-                    'message' => 'You do not have permission to access this resource!',
-                    'data' => []
-                ]);
-            }
+            $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
+            echo json_encode($response);
+
+            // if ($routeUserLevel <= $userLevel) {
+            // }
+            // else {
+            //     http_response_code(401);
+            //     echo json_encode([
+            //         'status' => 'Unauthorized',
+            //         'message' => 'You do not have permission to access this resource!',
+            //         'data' => []
+            //     ]);
+            // }
 
             exit;
         }

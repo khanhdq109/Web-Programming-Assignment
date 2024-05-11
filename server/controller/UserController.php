@@ -15,8 +15,9 @@
             if (strlen($postData['password']) < 8) {
                 http_response_code(411);
                 return array(
-                    'status' => 'error',
-                    'message' => 'Password must have at least 8 characters long;'
+                    'status' => 'Fail',
+                    'message' => 'Password must have at least 8 characters long;',
+                    'data' => []
                 );
             }
 
@@ -24,8 +25,9 @@
             if (!filter_var($postData['email'], FILTER_VALIDATE_EMAIL)) {
                 http_response_code(406);
                 return array(
-                    'status' => 'error',
-                    'message' => 'Invalid email address!'
+                    'status' => 'Fail',
+                    'message' => 'Invalid email address!',
+                    'data' => []
                 );
             }
 
@@ -56,8 +58,9 @@
             if (strlen($postData['password']) < 8) {
                 http_response_code(411);
                 return array(
-                    'status' => 'error',
-                    'message' => 'Password must have at least 8 characters long;'
+                    'status' => 'Fail',
+                    'message' => 'Password must have at least 8 characters long;',
+                    'data' => []
                 );
             }
 
@@ -65,8 +68,9 @@
             if (!filter_var($postData['email'], FILTER_VALIDATE_EMAIL)) {
                 http_response_code(406);
                 return array(
-                    'status' => 'error',
-                    'message' => 'Invalid email address!'
+                    'status' => 'Fail',
+                    'message' => 'Invalid email address!',
+                    'data' => []
                 );
             }
 
@@ -77,7 +81,7 @@
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Register successfully!',
+                    'message' => 'Register admin successfully!',
                     'data' => []
                 );
             }
@@ -85,7 +89,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Register failed!",
+                    'message' => "Register admin failed!",
                     'data' => []
                 );
             }
@@ -130,7 +134,7 @@
 
                 http_response_code(200);
                 return array(
-                    'status' => 'success',
+                    'status' => 'Success',
                     'message' => 'Log in successfully',
                     'data' => [$user]
                 );
@@ -155,7 +159,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get user successfully!',
+                    'message' => 'Get user information successfully!',
                     'data' => [$result]
                 );
             }
@@ -171,7 +175,7 @@
 
         // For only admin
         public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = [];
+            $params = array();
 
             $result = $this->userModel->readAll($params);
             if (!empty($result)) {
@@ -202,7 +206,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get user successfully!',
+                    'message' => 'Get user\'s profile successfully!',
                     'data' => [$result]
                 );
             }
@@ -220,7 +224,17 @@
             $params = [
                 'user_id' => $fromUser['id']
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
             
             $existed = $this->userModel->read($params);
             if (empty($existed)) {
@@ -256,7 +270,17 @@
             $params = [
                 'user_id' => $idRoute,
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $existed = $this->userModel->read($params);
             if (empty($existed)) {

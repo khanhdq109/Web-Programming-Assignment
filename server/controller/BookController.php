@@ -9,14 +9,25 @@
         }
 
         public function create($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = $postData;
+            $params = array();
+            if (!empty($postData)) {
+                $params = $postData;
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $result = $this->bookModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create book successfully!',
+                    'message' => 'Add book to the database successfully!',
                     'data' => []
                 );
             }
@@ -24,7 +35,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create book failed!",
+                    'message' => "Add book to the database failed!",
                     'data' => []
                 );
             }
@@ -40,7 +51,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get book successfully!',
+                    'message' => 'Get book information successfully!',
                     'data' => [$result]
                 );
             }
@@ -55,7 +66,7 @@
         }
 
         public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = [];
+            $params = array();
 
             $result = $this->bookModel->readAll($params);
             if (!empty($result)) {
@@ -84,7 +95,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get books successfully!',
+                    'message' => 'Search books successfully!',
                     'data' => $result
                 );
             }
@@ -92,7 +103,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Get books failed!',
+                    'message' => 'No book matched!',
                     'data' => []
                 );
             }
@@ -104,6 +115,14 @@
             ];
             if (!empty($postData)) {
                 $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
             }
             
             $existed = $this->bookModel->read($params);
@@ -121,7 +140,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update book successfully!',
+                    'message' => 'Update book information successfully!',
                     'data' => []
                 );
             }
@@ -129,7 +148,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update book failed!',
+                    'message' => 'Update book information failed!',
                     'data' => []
                 );
             }
@@ -155,7 +174,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete book successfully!',
+                    'message' => 'Delete book from database successfully!',
                     'data' => []
                 );
             }
@@ -163,7 +182,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete book failed!',
+                    'message' => 'Delete book from database failed!',
                     'data' => []
                 );
             }

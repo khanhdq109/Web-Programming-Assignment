@@ -13,7 +13,9 @@
                 'user_id' => $fromUser['id'],
                 'book_id' => $idRoute
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
             
             $result = $this->cartModel->create($params);
             if ($result) {
@@ -44,7 +46,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get cart successfully',
+                    'message' => 'Get cart information successfully',
                     'data' => $result
                 );
             }
@@ -52,7 +54,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Cart not found!',
+                    'message' => 'Cart is empty!',
                     'data' => []
                 );
             }
@@ -62,7 +64,17 @@
             $params = [
                 'user_id' => $fromUser['id']
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $existed = $this->cartModel->read($params);
             if (empty($existed)) {
@@ -97,7 +109,17 @@
             $params = [
                 'user_id' => $fromUser['id'],
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
             
             $existed = $this->cartModel->read($params);
             if (empty($existed)) {

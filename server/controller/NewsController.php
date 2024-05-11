@@ -9,14 +9,25 @@
         }
 
         public function create($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = $postData;
+            $params = array();
+            if (!empty($postData)) {
+                $params = $postData;
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $result = $this->newsModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create new successfully!',
+                    'message' => 'Create news successfully!',
                     'data' => []
                 );
             }
@@ -24,7 +35,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create new failed!",
+                    'message' => "Create news failed!",
                     'data' => []
                 );
             }
@@ -40,7 +51,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get new successfully!',
+                    'message' => 'Get news\'s content successfully!',
                     'data' => [$result]
                 );
             }
@@ -48,21 +59,21 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'New not found!',
+                    'message' => 'News not found!',
                     'data' => []
                 );
             }
         }
 
         public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = [];
+            $params = array();
             
             $result = $this->newsModel->readAll($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get new list successfully!',
+                    'message' => 'Get news list successfully!',
                     'data' => $result
                 );
             }
@@ -70,7 +81,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'No new found!',
+                    'message' => 'No news found!',
                     'data' => []
                 );
             }
@@ -80,14 +91,24 @@
             $params = [
                 'id' => $idRoute
             ];
-            $params = array_merge($params, $postData);
+            if (!empty($postData)) {
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $existed = $this->newsModel->read($params);
             if (empty($existed)) {
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'New not found!',
+                    'message' => 'News not found!',
                     'data' => []
                 );
             }
@@ -97,7 +118,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update new successfully!',
+                    'message' => 'Update news content successfully!',
                     'data' => []
                 );
             }
@@ -105,7 +126,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update new failed!',
+                    'message' => 'Update news content failed!',
                     'data' => []
                 );
             }
@@ -121,7 +142,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'New not found!',
+                    'message' => 'News not found!',
                     'data' => []
                 );
             }
@@ -131,7 +152,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete new successfully!',
+                    'message' => 'Delete news successfully!',
                     'data' => []
                 );
             }
@@ -139,7 +160,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete new failed!',
+                    'message' => 'Delete news failed!',
                     'data' => []
                 );
             }

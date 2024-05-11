@@ -19,7 +19,7 @@
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Like successfully!',
+                    'message' => 'Add to favorite successfully!',
                     'data' => []
                 );
             }
@@ -27,7 +27,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Like failed!",
+                    'message' => "Add to favorite failed!",
                     'data' => []
                 );
             }
@@ -52,7 +52,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Read failed!',
+                    'message' => 'User has not add this book to favorite yet!!',
                     'data' => []
                 );
             }
@@ -68,7 +68,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get favorite books successfully!',
+                    'message' => 'Get user\'s favorite books successfully!',
                     'data' => $result
                 );
             }
@@ -100,7 +100,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'No liked people found!',
+                    'message' => 'No one likes this book yet!',
                     'data' => []
                 );
             }
@@ -117,7 +117,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Like not found!',
+                    'message' => 'User already has not like this book!',
                     'data' => []
                 );
             }

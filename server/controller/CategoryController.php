@@ -12,14 +12,24 @@
             $params = [
                 'book_id' => $idRoute
             ];
-            $params = array_merge($params, $postData);
+            if(!empty($postData)) { 
+                $params = array_merge($params, $postData);
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
             
             $result = $this->categoryModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Add to category successfully!',
+                    'message' => 'Add category successfully!',
                     'data' => []
                 );
             }
@@ -27,7 +37,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Add to category failed!",
+                    'message' => "Add category failed!",
                     'data' => []
                 );
             }
@@ -51,7 +61,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Get categories failed!',
+                    'message' => 'This book has no category!',
                     'data' => []
                 );
             }
@@ -73,7 +83,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Get books failed!',
+                    'message' => 'No book found!',
                     'data' => []
                 );
             }

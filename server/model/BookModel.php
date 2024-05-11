@@ -100,6 +100,7 @@
         // output: bool
         public function update($params) {
             $book_id = intval($params['book_id']);
+
             $updateFields = [];
             foreach($params as $key => $value) {
                 if ($key !== 'book_id') {

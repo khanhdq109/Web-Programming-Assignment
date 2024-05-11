@@ -9,14 +9,25 @@
         }
 
         public function create($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = $postData;
+            $params = array();
+            if (!empty($postData)) {
+                $params = $postData;
+            }
+            else {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Nothing up-to-date!',
+                    'data' => []
+                );
+            }
 
             $result = $this->contactModel->create($params);
             if ($result) {
                 http_response_code(201);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Create contact successfully!',
+                    'message' => 'Create contact request successfully!',
                     'data' => []
                 );
             }
@@ -24,7 +35,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => "Create contact failed!",
+                    'message' => "Create contact request failed!",
                     'data' => []
                 );
             }
@@ -40,7 +51,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get contact successfully!',
+                    'message' => 'Get contact request information successfully!',
                     'data' => [$result]
                 );
             }
@@ -48,21 +59,21 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Contact not found!',
+                    'message' => 'Contact request not found!',
                     'data' => []
                 );
             }
         }
 
         public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = [];
+            $params = array();
 
             $result = $this->contactModel->readAll($params);
             if (!empty($result)) {
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Get contact list successfully!',
+                    'message' => 'Get contact request list successfully!',
                     'data' => $result
                 );
             }
@@ -70,7 +81,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'No contact found!',
+                    'message' => 'No contact request found!',
                     'data' => []
                 );
             }
@@ -86,7 +97,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Contact not found!',
+                    'message' => 'Contact request not found!',
                     'data' => []
                 );
             }
@@ -96,7 +107,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Update contact status successfully!',
+                    'message' => 'Update contact request status successfully!',
                     'data' => []
                 );
             }
@@ -104,7 +115,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Update contact status failed!',
+                    'message' => 'Update contact request status failed!',
                     'data' => []
                 );
             }
@@ -120,7 +131,7 @@
                 http_response_code(404);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Contact not found!',
+                    'message' => 'Contact request not found!',
                     'data' => []
                 );
             }
@@ -130,7 +141,7 @@
                 http_response_code(200);
                 return array(
                     'status' => 'Success',
-                    'message' => 'Delete contact successfully!',
+                    'message' => 'Delete contact request successfully!',
                     'data' => []
                 );
             }
@@ -138,7 +149,7 @@
                 http_response_code(400);
                 return array(
                     'status' => 'Fail',
-                    'message' => 'Delete contact failed!',
+                    'message' => 'Delete contact request failed!',
                     'data' => []
                 );
             }

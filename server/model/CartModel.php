@@ -14,7 +14,12 @@
         public function create($params) {
             $user_id = intval($params['user_id']);
             $book_id = intval($params['book_id']);
-            $quantity = intval($params['quantity']);
+            if (isset($params['quantity'])) {
+                $quantity = intval($params['quantity']);
+            }
+            else {
+                $quantity = intval(1);
+            }
 
             $tmp = array(
                 'user_id' => $user_id,

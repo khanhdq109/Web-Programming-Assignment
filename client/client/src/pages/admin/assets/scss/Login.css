@@ -1,0 +1,17 @@
+.login-background {
+  position: relative;
+}
+.login-background #adminLoginForm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background-color: #b0e0e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-background #adminLoginForm div {
+  width: 90%;
+}/*# sourceMappingURL=Login.css.map */

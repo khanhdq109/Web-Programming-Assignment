@@ -1,0 +1,69 @@
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-top .header-search-bar {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+.header-top .header-search-bar input {
+  width: 100%;
+  padding: 4px 16px;
+  border: solid 1px #ccc;
+  outline: none;
+}
+.header-top .header-search-bar svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: solid 1px #ccc;
+  border-left: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.header-top .header-search-bar svg:hover {
+  background-color: #ccc;
+}
+.header-top .header-action-btn {
+  background-color: #FFF;
+  border: solid 1px #ccc;
+  outline: none;
+  padding: 4px 8px;
+}
+.header-top .header-action-btn span {
+  margin-left: 6px;
+}
+
+.header-bottom {
+  background-color: #e5e5e5;
+}
+.header-bottom .header-bottom-nav-link {
+  color: #000;
+  text-decoration: none;
+}
+.header-bottom .header-bottom-nav-link.active, .header-bottom .header-bottom-nav-link:hover {
+  color: #f8acac;
+  transition: all 0.3s;
+}
+.header-bottom .header-bottom-auth-btns button {
+  background-color: #FFF;
+  border: none;
+  outline: none;
+  padding: 4px 8px;
+  background-color: transparent;
+  margin: 0 8px;
+}
+.header-bottom .header-bottom-auth-btns button span {
+  margin-left: 6px;
+}
+.header-bottom .header-bottom-auth-btns button a {
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.header-bottom .header-bottom-auth-btns button a:hover {
+  color: #f8acac;
+}/*# sourceMappingURL=Header.css.map */

@@ -23,7 +23,7 @@ export const Brand = () => {
                     <Sidebar />
                 </div>
                 <div className="col-9">
-                    <h1>Các nhãn hàng</h1>
+                    <h1>Các thể loại sách</h1>
 
                     <Table bordered className="mt-3">
                         <thead>

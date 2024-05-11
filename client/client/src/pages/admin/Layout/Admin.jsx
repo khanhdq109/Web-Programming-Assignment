@@ -5,6 +5,7 @@ import { Register } from "../Login/Register"
 import { Member } from "../Member/Member"
 import { useEffect } from "react"
 import { Login } from "../Login/Login"
+import { Comment } from "../Comment/Comment"
 
 export const Admin = () => {
     
@@ -27,6 +28,7 @@ export const Admin = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/members" element={<Member />} />
             <Route path="/brands" element={<Brand />} />
+            <Route path="/comments" element={<Comment />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
         </Routes>

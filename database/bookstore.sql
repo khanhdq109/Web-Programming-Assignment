@@ -14,7 +14,6 @@ USE `bookstore`;
 --
 -- Tables structure
 --
-
 CREATE TABLE BOOK (
   book_id INT PRIMARY KEY AUTO_INCREMENT,
   book_name VARCHAR(255) NOT NULL,

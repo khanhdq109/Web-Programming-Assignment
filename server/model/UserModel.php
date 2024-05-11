@@ -18,7 +18,7 @@
             $password = mysqli_real_escape_string($this->con, $params['password']);
             $bday = mysqli_real_escape_string($this->con, $params['bday']);
             $role = isset($params['role']) ? mysqli_real_escape_string($this->con, $params['role']) : mysqli_real_escape_string($this->con, 'user');
-            $avt_url = isset($params['avt_url']) ? mysqli_real_escape_string($this->con, $params['avt_url']) : mysqli_real_escape_string($this->con, 'default.jpg');
+            $avt_url = isset($params['avt_url']) ? mysqli_real_escape_string($this->con, $params['avt_url']) : mysqli_real_escape_string($this->con, '../../database/images/avatar/default.jpg');
             
             $query = "INSERT INTO USER
                     (user_name, fullname, email, password, bday, role, avt_url)

@@ -43,7 +43,6 @@
             }
         }
 
-<<<<<<< HEAD
         public function readAllCategories($idRoute = null, $queryParams, $postData, $fromUser) {
             http_response_code(501);
             return array(
@@ -51,27 +50,6 @@
                 'message' => 'The feature is under development!',
                 'data' => []
             );
-=======
-        public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
-            $params = array();
-            $result = $this->categoryModel->readAll();
-            if(!empty($result)) {
-                http_response_code(200);
-                return array(
-                    'status' => 'Success',
-                    'message' => 'Get categories successfully!',
-                    'data' => $result
-                ); 
-            }
-            else {
-                http_response_code(404);
-                return array(
-                    'status' => 'Fail',
-                    'message' => 'This book has no category!',
-                    'data' => []
-                );
-            }
->>>>>>> d6684562228c6caf5f07c6fe46cda9159229bd39
         }
 
         public function readByBookId($idRoute = null, $queryParams, $postData, $fromUser) {

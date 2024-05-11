@@ -16,7 +16,7 @@
                 'title' => 'Title',
                 'content' => 'Content',
                 'tag' => '',
-                'img' => 'default.jpg'
+                'img' => '../../database/images/news/default.jpg'
             ];
             $params = array_merge($defaultParams, $params);
 

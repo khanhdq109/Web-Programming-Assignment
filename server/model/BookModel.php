@@ -22,7 +22,7 @@
                 'description' => 'Description',
                 'price' => 0.00,
                 'book_cover' => 'Hardcover',
-                'img_url' => 'default.jpg',
+                'img_url' => '../../database/images/book/default.jpg',
                 'on_sale' => 0
             ];
             $params = array_merge($defaultParams, $params);

@@ -16,10 +16,45 @@ import {
   MDBTableBody,
   MDBTableHead,
 } from "mdb-react-ui-kit";
+import CartOrderItem from '../../component/CartOrderItem/CartOrderItem';
 
 export default function CartOrder() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
+  const navigate = useNavigate()
   const { user_id } = useParams();
+  const handleAddtoOrder = async (event) => {
+    event.preventDefault();
+      try {
+        const response = await fetch(`http://localhost:80/api.php/orders/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          'user_id': user_id,
+          'name': name,
+          'email': email,
+          'address': address,
+          'phone_number': phoneNumber,
+        })
+      });
+  
+      if (response.ok) {
+        console.log('Add successful!');
+        navigate(`/all`)
+      } else {
+        const errorData = await response.json();
+        console.error('Add failed:', errorData);
+        alert('Add cart failed! Please check the details and try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An unexpected error occurred. Please try again later.');
+    }
+
+  };
 
   return (
     <section className="h-100 h-custom">
@@ -146,31 +181,49 @@ export default function CartOrder() {
                     <MDBCol size="12" xl="6">
                       <MDBInput
                         className="mb-4 mb-xl-1"
-                        label="Name on card"
+                        label="Name"
                         placeholder="John Smiths"
                         size="lg"
+                        value={name} // State variable to store user's name
+                        onChange={(e) => setName(e.target.value)}
                       />
                     </MDBCol>
                     <MDBCol size="12" xl="6">
                       <MDBInput
                         className="mb-4 mb-xl-1"
-                        label="Card Number"
-                        placeholder="1111 2222 3333 4444"
+                        label="email"
+                        placeholder="example@example.com"
                         size="lg"
                         minlength="19"
                         maxlength="19"
+                        value={email} // State variable to store user's name
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </MDBCol>
                   </MDBRow>
-                  <MDBRow className="pt-4">
-                    <MDBCol size="25" xl="10">
-                        <MDBInput
-                          className="mb-4 mb-xl-1"
-                          label="Address"
-                          placeholder=""
-                          size="lg"
-                        />
-                      </MDBCol>
+                  <MDBRow>
+                    <MDBCol size="12" xl="6">
+                      <MDBInput
+                        className="mb-4 mb-xl-1"
+                        label="Address"
+                        placeholder=""
+                        size="lg"
+                        value={address} // State variable to store user's name
+                        onChange={(e) => setAddress(e.target.value)}
+                      />
+                    </MDBCol>
+                    <MDBCol size="12" xl="6">
+                      <MDBInput
+                        className="mb-4 mb-xl-1"
+                        label="phone number"
+                        placeholder="092xxxxxx"
+                        size="lg"
+                        minlength="19"
+                        maxlength="19"
+                        value={phoneNumber} // State variable to store user's name
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                      />
+                    </MDBCol>
                   </MDBRow>
                 </MDBCol>
                 <MDBCol lg="4" xl="3">
@@ -200,7 +253,7 @@ export default function CartOrder() {
                     <p className="mb-2">$26.48</p>
                   </div>
 
-                  <MDBBtn block size="lg">
+                  <MDBBtn block size="lg" onClick={handleAddtoOrder}>
                     <div className="d-flex justify-content-between">
                       <span>Checkout</span>
                       <span>$26.48</span>

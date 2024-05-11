@@ -17,7 +17,9 @@ function App() {
             <Route path='/admin/*' element={<Admin />} />
             <Route path="/login" element={<Login />} />  {/* Login route */}
             <Route path="/register" element={<Register />} />  {/* Register route */}
-            <Route path="/*" element={<MainGuest />} />  {/* Guest interface as default route */}
+            <Route path="/*" element={<MainGuest />} />
+            <Route path="/Guest/*" element={<MainGuest />} />
+              {/* Guest interface as default route */}
             <Route path="/guest/login" element={<LoginGuest />} />
             <Route path="/guest/register" element={<RegisterGuest />} />
           </Routes>

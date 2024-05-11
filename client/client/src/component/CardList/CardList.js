@@ -10,79 +10,69 @@ function CardList({ category }) {
   
 
   useEffect(() => {
-    getBooks();
-  }, []);
+    fetchBooks(category);
+  }, [category]);
 
-  function getBooks() {
-    fetch('http://localhost:80/api.php/book/read', {
-      method: 'GET',
-      credentials: 'include'
-    })
-    .then(response => {
+  const fetchBooks = async (selectedCategory) => {
+    try {
+      const response = await fetch('http://localhost:80/api.php/book/read', {
+        method: 'GET',
+        credentials: 'include',
+      });
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .then(data => {
-      if (Array.isArray(data.data)) {
-        let booksData = data.data;
-        if (category !== "all") {
-          let categoryPromises = [];
-          let arrBooks = [];
-          
-          // Iterate over each book data
-          booksData.forEach(bookData => {
-            // Push the promise returned by getCategory to categoryPromises array
-            categoryPromises.push(
-              getCategory(bookData.book_id).then(categories => {
-                let categoryData = categories.data;
-                // Check if the book belongs to the desired category
-                categoryData.forEach(bookid => {
-                  if (bookid.category_name === category) {
-                    arrBooks.push(bookData);
-                    return; // Exit the loop if found
-                  }
-                });
-              })
-            );
-          });
-          // Wait for all promises to resolve
-          Promise.all(categoryPromises)
-            .then(() => {
-              setBooks(arrBooks);
-            })
-            .catch(error => {
-              console.error('Error fetching category details:', error);
-            });
-        } else {
 
-          setBooks(booksData);
-        }
-      } else {
+      const data = await response.json();
+
+      if (!Array.isArray(data.data)) {
         throw new Error('API response is not an array');
       }
-    })
-    .catch(error => {
-      console.error('Error fetching books:', error);
-    });
-  }
 
-  function getCategory(bookId) {
-    return fetch(`http://localhost:80/api.php/category/readCategories/${bookId}`, {
-      method: 'GET',
-      credentials: 'include'
-    })
-    .then(response => {
+      const booksData = data.data;
+      let filteredBooks;
+
+      if (selectedCategory !== 'all') {
+        filteredBooks = await Promise.all(
+          booksData.map(async (bookData) => {
+            const categories = await fetchCategory(bookData.book_id);
+            if (categories.data.some((cat) => cat.category_name === selectedCategory)) {
+              return bookData;
+            }
+            return null; // Exclude books not belonging to the category
+          })
+        );
+      } else {
+        filteredBooks = booksData;
+      }
+
+      setBooks(filteredBooks.filter(Boolean)); // Remove null values from filtered data
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    }
+  };
+
+  const fetchCategory = async (bookId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:80/api.php/category/readCategories/${bookId}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      );
+
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .catch(error => {
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
       console.error('Error fetching categories:', error);
-    })
-  }
+    }
+  };
 
 
   // Pagination Logic

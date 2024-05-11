@@ -21,7 +21,6 @@ import {
 
 export default function ProfilePage() {
   const { user_id } = useParams();
-  console.log(user_id);
   const [userProfile, setProfile] = useState(null);
   
   useEffect(() => {

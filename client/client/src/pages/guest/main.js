@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React, { useState } from 'react';
 import Sidebar from '../../component/Sidebar/sidebar';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import CardList from '../../component/CardList/CardList';
 import Test from '../../component/CardList/test';
 import Homepage from './homepage';
@@ -16,27 +16,39 @@ import Footer from '../../component/Footer/Footer';
 import News from './news';
 import { useParams } from 'react-router-dom';
 import { getUserId } from '../../component/AutheUser';
+const categories = [
+  { name: 'Drama', path: '/Drama' },
+  { name: 'Life Style', path: '/Life-Style' },
+  { name: 'Culture', path: '/Culture' },
+  { name: 'Love Story', path: '/Love-Story' },
+  { name: 'Science', path: '/Science' },
+  { name: 'Business', path: '/Business' },
+  { name: 'Inspiration', path: '/Inspiration' },
+];
 
 function MainGuest() {
+  console.log(getUserId());
+
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-3">
-          <nav className="list-group">
-            <div className="list-group-item list-group-item-action bg-success-subtle" aria-current="page">Categories</div>
-            <a href="/Drama" className="list-group-item list-group-item-action">Drama</a>
-            <a href="/Life-Style" className="list-group-item list-group-item-action">Life Style</a>
-            <a href="/Culture" className="list-group-item list-group-item-action">Culture</a>
-            <a href="/Love-Story" className="list-group-item list-group-item-action">Love Story</a>
-            <a href="/Science" className="list-group-item list-group-item-action">Science</a>
-            <a href="/Business" className="list-group-item list-group-item-action">Business</a>
-            <a href="/Inspiration" className="list-group-item list-group-item-action">Inspiration</a>
-            {/* Thêm các loại khác */}
-          </nav>
+        <nav className="list-group">
+          <div className="list-group-item list-group-item-action bg-success-subtle" aria-current="page">Categories</div>
+          {categories.map((category) => (
+            <Link
+              key={category.name} // Add a unique key for each link
+              to={category.path}
+              className="list-group-item list-group-item-action"
+            >
+              {category.name}
+            </Link>
+          ))}
+        </nav>
         </div>
         <div className="col-md-9">
-          <MainNav user_id={getUserId()}/>
-          <div className="main-content" style={{ margin: '5px', marginBottom: '0',width: '100%', height: '75vh' }}>
+          <MainNav/>
+          <div className="main-content" style={{ margin: '5px', marginBottom: '0',width: '100%', height: '100vh' }}>
             <Routes>
               <Route path="/" exact element={<Homepage />} />
               <Route path="/home" exact element={<Homepage />} />

@@ -40,6 +40,18 @@
             return $book;
         }
 
+        public function readAll() {
+            $query = "SELECT * FROM CATEGORY";
+            $result = mysqli_query($this->con, $query);
+            $categories = [];
+            if ($result && mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $categories[] = $row;
+                }
+            }
+            return $categories;
+        }
+
         // input: book_id
         // output: list of all matched categories
         public function readByBookId($params) {

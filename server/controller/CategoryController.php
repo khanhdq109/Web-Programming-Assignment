@@ -43,6 +43,27 @@
             }
         }
 
+        public function readAll($idRoute = null, $queryParams, $postData, $fromUser) {
+            $params = array();
+            $result = $this->categoryModel->readAll();
+            if(!empty($result)) {
+                http_response_code(200);
+                return array(
+                    'status' => 'Success',
+                    'message' => 'Get categories successfully!',
+                    'data' => $result
+                ); 
+            }
+            else {
+                http_response_code(404);
+                return array(
+                    'status' => 'Fail',
+                    'message' => 'This book has no category!',
+                    'data' => []
+                );
+            }
+        }
+
         public function readByBookId($idRoute = null, $queryParams, $postData, $fromUser) {
             $params = [
                 'book_id' => $idRoute

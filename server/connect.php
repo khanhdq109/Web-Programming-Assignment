@@ -2,7 +2,7 @@
     class Connect {
         private $host = 'localhost';
         private $user = 'root';
-        private $password = '135792468jK';
+        private $password = '180802';
         private $database = 'bookstore';
 
         public function connect() {

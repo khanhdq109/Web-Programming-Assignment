@@ -9,7 +9,7 @@
             $this->con = $database->connect();
         }
 
-        // input: book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url
+        // input: book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url, on_sale
         // output: bool
         public function create($params) {
             $defaultParams = [
@@ -22,7 +22,8 @@
                 'description' => 'Description',
                 'price' => 0.00,
                 'book_cover' => 'Hardcover',
-                'img_url' => 'default.jpg'
+                'img_url' => 'default.jpg',
+                'on_sale' => 0
             ];
             $params = array_merge($defaultParams, $params);
 
@@ -36,11 +37,12 @@
             $price = number_format(floatval($params['price']), 2, '.', '');
             $book_cover = mysqli_real_escape_string($this->con, $params['book_cover']);
             $img_url = mysqli_real_escape_string($this->con, $params['img_url']);
+            $on_sale = intval($params['on_sale']);
 
             $query = "INSERT INTO BOOK 
-                    (book_name, author, publisher, page_number, publication_date, language, description, price, book_cover, img_url)
+                    (book_name, author, publisher, page_number, publication_date, language, description, price, book_cover, img_url, on_sale)
                     VALUES
-                    ('$book_name', '$author', '$publisher', $page_number, '$publication_date', '$language', '$description', $price, '$book_cover', '$img_url')";
+                    ('$book_name', '$author', '$publisher', $page_number, '$publication_date', '$language', '$description', $price, '$book_cover', '$img_url', $on_sale)";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

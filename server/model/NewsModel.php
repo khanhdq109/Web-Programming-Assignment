@@ -15,7 +15,8 @@
             $defaultParams = [
                 'title' => 'Title',
                 'content' => 'Content',
-                'tag' => ''
+                'tag' => '',
+                'img' => 'default.jpg'
             ];
             $params = array_merge($defaultParams, $params);
 
@@ -23,11 +24,12 @@
             $content = mysqli_real_escape_string($this->con, $params['content']);
             $publish_date = date('Y-m-d');
             $tag = mysqli_real_escape_string($this->con, $params['tag']);
+            $img = mysqli_real_escape_string($this->con, $params['img']);
 
             $query = "INSERT INTO NEWS
-                    (title, content, publish_date, tag)
+                    (title, content, publish_date, tag, img)
                     VALUES
-                    ('$title', '$content', '$publish_date', '$tag')";
+                    ('$title', '$content', '$publish_date', '$tag', '$img')";
             $result = mysqli_query($this->con, $query);
 
             return $result ? true : false;

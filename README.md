@@ -1,2 +1,2 @@
-# Online book store
+# Online Book Store
 ...

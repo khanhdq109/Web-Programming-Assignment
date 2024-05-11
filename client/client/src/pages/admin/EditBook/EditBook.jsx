@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import { AdminNav } from '../../../component/AdminNav/AdminNav'
 import { Sidebar } from '../Sidebar/Sidebar'
 import BookService from '../services/BookService'
+import { useNavigate } from 'react-router-dom'
 
 export const EditBook = () => {
 
@@ -16,6 +17,7 @@ export const EditBook = () => {
     const [publicationDate, setPublicationDate] = useState('');
     const [description, setDescription] = useState('');
     const [onSale, setOnSale] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,6 +74,7 @@ export const EditBook = () => {
         console.log(json);
         if(json.status === 'Success') {
             alert('Update book successfully');
+            navigate('/admin/dashboard');
         } else {
             alert('Update book failed');
         }

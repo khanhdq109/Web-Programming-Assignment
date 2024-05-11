@@ -14,18 +14,18 @@ export const CustomModal = (
     }) => {
     return (
         <Modal show={show}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{title}</Modal.Title>
-                </Modal.Header>
+            <Modal.Header closeButton>
+                <Modal.Title>{title}</Modal.Title>
+            </Modal.Header>
 
-                <Modal.Body>
-                    {body}
-                </Modal.Body>
+            <Modal.Body>
+                {body}
+            </Modal.Body>
 
-                <Modal.Footer>
-                    <Button onClick={handleCancel} variant="secondary">{cancelText}</Button>
-                    <Button onClick={handleConfirm} variant="primary">{confirmText}</Button>
-                </Modal.Footer>
+            <Modal.Footer>
+                <Button onClick={handleCancel} variant="secondary">{cancelText}</Button>
+                <Button onClick={handleConfirm} variant="primary">{confirmText}</Button>
+            </Modal.Footer>
         </Modal>
     )
 }

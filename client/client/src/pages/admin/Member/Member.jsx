@@ -33,6 +33,10 @@ export const Member = () => {
             setShow(false);
         }
     }
+
+    const handleUpdateUser = e => {
+        
+    }
     
     const handleOpenModal = e => {
         const element = e.target;

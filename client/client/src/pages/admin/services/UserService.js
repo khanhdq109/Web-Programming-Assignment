@@ -44,4 +44,17 @@ export class UserService {
         const response = await fetch(`${API_URL}/user/read`);
         return await response.json();
     }
+
+    async updateUser(user_id, fullname, bday) {
+        const response = await fetch(`${API_URL}/user/update`, {
+            method: 'PATCH',
+            headers: API_HEADERS,
+            body: JSON.stringify({
+                user_id,
+                fullname, 
+                bday
+            })
+        });
+        return await response.json();
+    }
 }

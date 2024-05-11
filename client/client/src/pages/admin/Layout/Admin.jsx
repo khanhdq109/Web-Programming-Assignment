@@ -8,6 +8,8 @@ import { Login } from "../Login/Login"
 import { Comment } from "../Comment/Comment"
 import { AddBook } from "../AddBook/AddBook"
 import { EditBook } from "../EditBook/EditBook"
+import AddNews from "../../../AddNews/AddNews"
+import { EditNews } from "../EditNews/EditNews"
 
 export const Admin = () => {
     
@@ -30,6 +32,8 @@ export const Admin = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/add-book" element={<AddBook />} />
             <Route path="/edit-book/*" element={<EditBook />} />
+            <Route path="/add-news" element={<AddNews />} />
+            <Route path="/edit-news/*" element={<EditNews />} />
             <Route path="/members" element={<Member />} />
             <Route path="/brands" element={<Brand />} />
             <Route path="/comments" element={<Comment />} />

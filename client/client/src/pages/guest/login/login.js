@@ -8,13 +8,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { setUserId } from '../../../component/AutheUser';
 
 function LoginGuest() {
-
+    
     const [formData, setFormData] = useState({
         email: '',
         password: '',
       });
     
       const navigate = useNavigate();
+      const handleRegisterClick = () => {
+        navigate('/guest/register'); // Navigate to the register route
+      };
 
       const handleChange = (event) => {
         setFormData({ ...formData, [event.target.type]: event.target.value });
@@ -89,7 +92,8 @@ function LoginGuest() {
 
           <div className='text-center text-md-start mt-4 pt-2'>
             <MDBBtn className="mb-0 px-5" size='lg' onClick={handleSubmit}>Login</MDBBtn>
-            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="#!" className="link-danger">Register</a></p>
+            <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account?
+            <a onClick={handleRegisterClick} className="link-danger">Register</a></p>
           </div>
 
         </MDBCol>

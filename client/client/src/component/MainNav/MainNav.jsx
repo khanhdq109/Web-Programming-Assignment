@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/admin/assets/scss/Header.scss'
 import { ToastContainer, toast } from 'react-toastify';
+import { setUserId } from '../AutheUser'
 
 export const MainNav = ({user_id}) => {
     const [user, setUserDetail] = useState(null);
@@ -47,6 +48,7 @@ export const MainNav = ({user_id}) => {
             credentials: 'include'
           });
           if (response.ok) {
+            setUserId(null)
             navigate(`/`);
           } else {
             const errorData = await response.json();
@@ -66,8 +68,6 @@ export const MainNav = ({user_id}) => {
       };
       
       
-
-
     return (
         <div className="header-bottom">
             <div className="container d-flex justify-content-between align-items-center">
@@ -76,7 +76,7 @@ export const MainNav = ({user_id}) => {
                         <li><Link className="header-bottom-nav-link active" to="/home">Trang chủ</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/all">Sản phẩm</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/news">Tin tức</Link></li>
-                        <li><Link className="header-bottom-nav-link" to="/dashboard">Quản trị viên</Link></li>
+                        <li><Link className="header-bottom-nav-link" to="/login">Quản trị viên</Link></li>
                     </ul>
                 </nav>
                 <div className="header-bottom-auth-btns">

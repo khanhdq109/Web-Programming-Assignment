@@ -88,11 +88,11 @@
         'DELETE /api.php/liked/delete/(\d+)' => 'LikedController@delete@1',                     // Unlike a specific book: user_id, book_id
 
         // News
-        'POST /api.php/news/create' => 'NewsController@create@2',                               // Create a new: title, content, tag
+        'POST /api.php/news/create' => 'NewsController@create@0',                               // Create a new: title, content, tag
         'GET /api.php/news/read/(\d+)' => 'NewsController@read@0',                              // Read a specific news: id
         'GET /api.php/news/read' => 'NewsController@readAll@0',                                 // Read list of all news: None
-        'PATCH /api.php/news/update/(\d+)' => 'NewsController@update@2',                        // Update news: id, title, content, tag
-        'DELETE /api.php/news/delete/(\d+)' => 'NewsController@delete@2',                       // Delete a specific news: id
+        'PATCH /api.php/news/update/(\d+)' => 'NewsController@update@0',                        // Update news: id, title, content, tag
+        'DELETE /api.php/news/delete/(\d+)' => 'NewsController@delete@0',                       // Delete a specific news: id
 
         // Orders
         'POST /api.php/orders/create' => 'OrdersController@create@1',                           // Export user's order: user_id, name, email, address, phone_number, item (list of [bookk_id, quantity])

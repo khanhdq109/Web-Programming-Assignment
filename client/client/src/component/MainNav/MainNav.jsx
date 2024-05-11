@@ -76,7 +76,7 @@ export const MainNav = ({user_id}) => {
                         <li><Link className="header-bottom-nav-link active" to="/home">Trang chủ</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/all">Sản phẩm</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/news">Tin tức</Link></li>
-                        <li><Link className="header-bottom-nav-link" to="/dashboard">Quản trị viên</Link></li>
+                        <li><Link className="header-bottom-nav-link" to="/admin/dashboard">Quản trị viên</Link></li>
                     </ul>
                 </nav>
                 <div className="header-bottom-auth-btns">

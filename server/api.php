@@ -121,7 +121,7 @@
         'POST /api.php/auth/forgotPassword' => 'UserController@forgotPassword@0',               // Forgot password: user_name/email, OTP
         'POST /api.php/auth/updateEmail' => 'UserController@updateEmail@1',                     // Update email address: OTP, new_email
         'GET /api.php/user/read/(\d+)' => 'UserController@read@0',                              // Read a specific user profile: user_id
-        'GET /api.php/user/read' => 'UserController@readAll@2',                                 // Read all user's profiles (for only admin): None
+        'GET /api.php/user/read' => 'UserController@readAll@0',                                 // Read all user's profiles (for only admin): None
         'GET /api.php/user/myProfile' => 'UserController@readMyProfile@1',                      // Read user's profile: user_id
         'PATCH /api.php/user/update' => 'UserController@update@1',                              // Update user's profile: user_id, fullname, bday, avt_url
         'PATCH /api.php/user/updatePoint/(\d+)' => 'UserController@updatePoint@2',              // Update user's promotion point (for only admin / or automatically): user_id, point
@@ -141,22 +141,21 @@
 
             $params = array_slice($matches, 1)[0];
 
-            require __DIR__ . '/controller/' . $controllerName . '.php';
-            $controller = new $controllerName();
+            if ($routeUserLevel <= $userLevel) {
+                require __DIR__ . '/controller/' . $controllerName . '.php';
+                $controller = new $controllerName();
 
-            $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
-            echo json_encode($response);
-
-            // if ($routeUserLevel <= $userLevel) {
-            // }
-            // else {
-            //     http_response_code(401);
-            //     echo json_encode([
-            //         'status' => 'Unauthorized',
-            //         'message' => 'You do not have permission to access this resource!',
-            //         'data' => []
-            //     ]);
-            // }
+                $response = call_user_func_array([$controller, $methodName], [$params, $_GET, $data, $payload]);
+                echo json_encode($response);
+            }
+            else {
+                http_response_code(401);
+                echo json_encode([
+                    'status' => 'Unauthorized',
+                    'message' => 'You do not have permission to access this resource!',
+                    'data' => []
+                ]);
+            }
 
             exit;
         }

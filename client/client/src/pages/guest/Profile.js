@@ -20,6 +20,9 @@ import {
 
 
 export default function ProfilePage() {
+  
+
+
   return (
     <section style={{ backgroundColor: '#eee' }}>
       <MDBContainer className="py-2">

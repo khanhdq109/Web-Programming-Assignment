@@ -3,9 +3,23 @@ import { faCartShopping, faHeart, faSearch } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
+import { useNavigate } from 'react-router-dom';
 export const Header = () => {
+    const [searchQuery, setSearchQuery] = useState(''); // State to manage the search query
+    const navigate = useNavigate(); // Initialize useHistory hook
+
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        navigate(`/search/${searchQuery}`); // Use navigate to push search query
+    };
+
+
     return (
         <div className="container">
             <div className="header-top">
@@ -13,10 +27,22 @@ export const Header = () => {
                     <img width={215} height={98} src={logo} alt="" className="header-logo-img" />
                 </div>
 
-                <div className="header-search-bar">
-                    <input type="text" placeholder="Search for product..." />
-                    <FontAwesomeIcon icon={faSearch} />
-                </div>
+                {/* Use onSubmit event to trigger search */}
+                    <div className="header-search-bar">
+                        <form onSubmit={handleSearchSubmit}> 
+                            <input
+                            type="text"
+                            placeholder="Search for product..."
+                            value={searchQuery}
+                            onChange={handleSearchInputChange} // Handle changes in search input
+                            className="form-control"
+                            />
+                            <button type="submit">
+                            <FontAwesomeIcon icon={faSearch} />
+                            </button>
+                        </form>
+                    </div>
+                
 
                 <div className="header-actions">
                     <button className="header-action-btn header-love-btn">

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, useParams } from 'react-router-dom';
 import './Search.css'
 
-function search({name}) {
+function Searchbook() {
+  const { query } = useParams();
+
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(12);
@@ -11,7 +13,7 @@ function search({name}) {
 
   useEffect(() => {
     getBooks();
-  }, []);
+  }, [query]);
 
   function getBooks() {
     fetch('http://localhost:80/api.php/book/read', {
@@ -27,7 +29,10 @@ function search({name}) {
     .then(data => {
       if (Array.isArray(data.data)) {
         let booksData = data.data;
-          const filteredBooks = booksData.filter(bookData => bookData.name && !bookData.name.trim());
+          const filteredBooks = booksData.filter(bookData => {
+            // Check if bookData.name equals the query or contains the query (case insensitive)
+            return bookData.book_name.toLowerCase() === query.toLowerCase() || bookData.book_name.toLowerCase().includes(query.toLowerCase());
+          });
           setBooks(filteredBooks);
       } else {
         throw new Error('API response is not an array');
@@ -96,4 +101,4 @@ function search({name}) {
   );
 }
 
-export default search;
+export default Searchbook;

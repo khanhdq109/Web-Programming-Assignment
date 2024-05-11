@@ -11,6 +11,7 @@ import ProfilePage from './Profile';
 import ProductDetail from '../../component/ProductDetail/ProductDetail';
 import { Login } from '../admin/Login/Login';
 import { MainNav } from '../../component/MainNav/MainNav';
+import Searchbook from '../../component/SearchCard/search';
 import News from './news';
 
 function MainGuest() {
@@ -51,6 +52,8 @@ function MainGuest() {
               <Route path="/Business" element={<CardList category="Business" />} />
               <Route path="/Inspiration" element={<CardList category="Inspiration" />} />
               {/* Add more routes for other categories */}
+
+              <Route path="/search/:query" element={<Searchbook />} />
             </Routes>
           </div>
           

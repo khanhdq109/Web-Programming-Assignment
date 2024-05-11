@@ -17,9 +17,10 @@ export const Dashboard = () => {
     }, [])
 
     // Function to delete a book
-    const deleteBook = (id) => {
+    const deleteBook = async (id) => {
         const bookService = new BookService();
-        const json = bookService.deleteBook(id);
+        const json = await bookService.deleteBook(id);
+        console.log(json);
         if (json.status === 'Success') {
             alert('Delete book successfully');
             setBooks(books.filter(book => book.id !== id));
@@ -52,7 +53,7 @@ export const Dashboard = () => {
                                     <td>{book.book_name}</td>
                                     <td>{book.author}</td>
                                     <td>
-                                        <Button variant="danger" onClick={() => deleteBook(book.id)}>Xoá</Button>
+                                        <Button variant="danger" onClick={() => deleteBook(book.book_id)}>Xoá</Button>
                                         {/* <Button variant="warning" onClick={() => update(book.id)}>Delete</Button> */}
                                     </td>
                                 </tr>

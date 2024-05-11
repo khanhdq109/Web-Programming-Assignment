@@ -93,7 +93,7 @@
                     'data' => []
                 );
             }
-        }
+        } 
 
         public function login($idRoute = null, $queryParams, $postData, $fromUser) {
             $username = $postData['user_name'];
@@ -320,7 +320,16 @@
             );
         }
 
-        public function forgetPassword($idRoute = null, $queryParams, $postData, $fromUser) {
+        public function forgotPassword($idRoute = null, $queryParams, $postData, $fromUser) {
+            http_response_code(501);
+            return array(
+                'status' => 'Fail',
+                'message' => 'The feature is under development!',
+                'data' => []
+            );
+        }
+
+        public function updateEmail($idRoute = null, $queryParams, $postData, $fromUser) {
             http_response_code(501);
             return array(
                 'status' => 'Fail',

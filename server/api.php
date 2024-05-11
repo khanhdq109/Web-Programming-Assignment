@@ -105,6 +105,9 @@
         'POST /api.php/auth/registerAdmin' => 'UserController@registerAdmin@0',                 // Register for admin: user_name, fullname, email, password, bday, avt_url
         'POST /api.php/auth/login' => 'UserController@login@0',                                 // Login: user_name, password
         'GET /api.php/auth/logout' => 'UserController@logout@1',                                // Logout: None
+        'POST /api.php/auth/updatePassword' => 'UserController@updatePassword@1',               // Update password: user_id, old_password, new_password
+        'POST /api.php/auth/forgotPassword' => 'UserController@forgotPassword@0',               // Forgot password: user_name/email, OTP
+        'POST /api.php/auth/updateEmail' => 'UserController@updateEmail@1',                     // Update email address: OTP, new_email
         'GET /api.php/user/read/(\d+)' => 'UserController@read@0',                              // Read a specific user profile: user_id
         'GET /api.php/user/read' => 'UserController@readAll@2',                                 // Read all user's profiles (for only admin): None
         'GET /api.php/user/myProfile' => 'UserController@readMyProfile@1',                      // Read user's profile: user_id

@@ -309,7 +309,7 @@ Take time to read over your blog. This step tends to be ignored quite often. You
 
 Avoid thinking of blogging as a simple thing. You should constantly develop new strategies, learn new techniques and treat your blog as a revenue source. Learn from other seasoned bloggers, and incorporate different strategies and techniques that you pick up along the way. Continuously improve and learn about new blogging methods that will help you move forward.
 
-Having accurate information to refer to through the blogging process is a big positive. For every successful blog out there, you can bet that there are hundreds that it not. Use what you’ve learned in the article and avoid becoming one of the many; you should aim to be one of the few.'
+Having accurate information to refer to through the blogging process is a big positive. For every successful blog out there, you can bet that there are hundreds that it not. Use what you’ve learned in the article and avoid becoming one of the many; you should aim to be one of the few.',
 'https://nhadepso.com/wp-content/uploads/2023/03/101-hinh-nen-sach-dep-an-tuong-cho-may-tinh-hoac-dien-thoai_13.jpg');
 
 INSERT INTO NEWS (title, publish_date, tag, content, img)

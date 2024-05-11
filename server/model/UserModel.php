@@ -74,9 +74,9 @@
         // input: user_name
         // output: a matched user
         public function readByUserName($params) {
-            $user_name = intval($params['user_name']);
+            $user_name = mysqli_real_escape_string($this->con, $params['user_name']);
 
-            $query = "SELECT * FROM USER WHERE user_name = $user_name";
+            $query = "SELECT * FROM USER WHERE user_name = '$user_name'";
             $result = mysqli_query($this->con, $query);
 
             $user = null;
@@ -138,10 +138,10 @@
         
         // input: user_name, password
         public function validateUser($params) {
-            $user_name = $params['user_name'];
-            $password = $params['password'];
+            $user_name = mysqli_real_escape_string($this->con, $params['user_name']);
+            $password = mysqli_real_escape_string($this->con, $params['password']);
 
-            $query = "SELECT FROM USER WHERE user_name = '$user_name'";
+            $query = "SELECT * FROM USER WHERE user_name = '$user_name'";
             $result = mysqli_query($this->con, $query);
 
             $user = null;

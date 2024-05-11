@@ -63,7 +63,8 @@ CREATE TABLE NEWS (
   title VARCHAR(255),
   publish_date DATE NOT NULL,
   tag VARCHAR(255) NOT NULL,
-  content TEXT NOT NULL
+  content TEXT NOT NULL,
+  img VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE REVIEW (
@@ -238,7 +239,7 @@ INSERT INTO REVIEW (rating, review, user_id,  book_id)
 VALUES (5, 'This book was fantastic! I couldn\'t put it down and would definitely read it again.', 6, 15);
 
 /*NEWS*/
-INSERT INTO NEWS (title, publish_date, tag, content)
+INSERT INTO NEWS (title, publish_date, tag, content, img)
 VALUES ('Everything You Need To Know About Blogging', '2015-06-28', 'DREAM, IDEA, NOVEL', 'People communicate differently than they used to thanks to technology that didn’t exist before. Blogging is hot right now, and this article can help you to take advantage of that.
 
 Make use of a mind map. Organizing your blog into a mind-map, using the categories, posts, promotion and all of your income sources can be a great method of organization. It creates a way for you to see where your blog is lacking and what you can do to make it more successful.
@@ -261,9 +262,9 @@ Posting images to your blog is a great way to add interest. Public domain photog
 
 People the world over can potentially view your blog, so be mindful of this. You voice could influence the actions of many people. Remember that your blog could have a major impact on others, as well as yourself, and strive to make it as good as you can. Hopefully, the tips and tricks that you have just taken a look at can help you propel your blog to the highest possible level of quality.
 
-');
+', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsExf-iP4VsbiXrvfwcAqJJSnnxY8SZ4cMYNtYAwK8Ig&s');
 
-INSERT INTO NEWS(title, publish_date, tag, content)
+INSERT INTO NEWS(title, publish_date, tag, content, img)
 VALUES ('Building A Brighter Future With A Successful Blog', '2015-06-28', 'DREAM, IDEA, NOVEL', 'Most blogs are focused on one issue. Whether you want to create a blog dedicated to your passion, or you simply want to improve your current blog, the information in this article will help you. Read on to find out how you can join the hordes of already successful online bloggers.
 
 Take any ideas as you get them for blogging. Make sure to create a place where they can be stored. Writing just when inspired can be unproductive to your blog. Many times, the best ideas can appear when you’re not able to blog. So give them a place to grow and flourish.
@@ -285,9 +286,9 @@ Use a lot of plug-ins on your blog because it gives users the motivation to stic
 Many people overlook the importance of having a keyword rich URL. Having a URL that has keywords related to your article will instantly boost the chances that your site will be seen by someone that is searching the internet on the various search engines. This is a simple step that you can take that will increase your viewership for your blog.
 
 Hopefully, you’ve been able to digest what you’ve read here and benefit from it! It’s completely normal if you’re feeling somewhat overwhelmed right now. The work involved in making your own blog and maintaining it can be hard, but rewarding work. If you use the tips in this article and save it, you will have it as a resource whenever you need some help
-');
+', 'https://theme.hstatic.net/1000173566/1000591201/14/breadcrumb_bg.png?v=1450');
 
-INSERT INTO NEWS (title, publish_date, tag, content)
+INSERT INTO NEWS (title, publish_date, tag, content, img)
 VALUES ('Blogging And How You Can Get A Lot From It', '2015-06-28', 'DREAM, IDEA, NOVEL', 'Whether you’re just looking to type about a hobby you have or if you want to attempt to run a business, starting a blog might be worthy of your consideration. Before you get started, first take a few minutes to read these expert-provided tips below. Once you learn about blogging, the process becomes a lot simpler.
 
 Create a blogroll. A blogroll is a list of other blogs in your niche that you find valuable. Creating such a list increases your blog’s value to readers, as they may be able to find content that they couldn’t find on your blog. If you use your blog for marketing, a blogroll will also increase your credibility in the marketplace.
@@ -309,9 +310,9 @@ Take time to read over your blog. This step tends to be ignored quite often. You
 Avoid thinking of blogging as a simple thing. You should constantly develop new strategies, learn new techniques and treat your blog as a revenue source. Learn from other seasoned bloggers, and incorporate different strategies and techniques that you pick up along the way. Continuously improve and learn about new blogging methods that will help you move forward.
 
 Having accurate information to refer to through the blogging process is a big positive. For every successful blog out there, you can bet that there are hundreds that it not. Use what you’ve learned in the article and avoid becoming one of the many; you should aim to be one of the few.'
-);
+'https://nhadepso.com/wp-content/uploads/2023/03/101-hinh-nen-sach-dep-an-tuong-cho-may-tinh-hoac-dien-thoai_13.jpg');
 
-INSERT INTO NEWS (title, publish_date, tag, content)
+INSERT INTO NEWS (title, publish_date, tag, content, img)
 VALUES ('Expert Advice On Building A Better Blogging Plan', '2015-06-28', 'DREAM, IDEA, NOVEL', 'While getting the hang of new technology may overwhelm you at first, blogging is simple enough that nearly anyone can participate. Of course, there is a certain level of skill and creativity involved with developing a captivating blog, but you can learn what you do not know and cultivate your skills to really get your message across to website visitors.
 
 If you are interested in blogging, but you don’t particularly like to write, try starting a blog about one of your creative talents. You could try a photography blog and share your hobby with others. Or you may write poetry or music that you could post samples of. If people like what you have to offer, they will come back for more.
@@ -333,9 +334,9 @@ If you are wanting to run a potentially profitable blog, you should ensure that 
 Use empty space to improve visual interest in your page. There is a reason why those who produce hard copy material abide by certain formatting rules. Margins, spacing between lines and blocks of text, and even spacing between sentences is important to the overall visual effect of your blog.
 
 As you see now, blogging can enhance the online experience for visitors to your website and will in turn, create the desired results of increased sales. If clients and business associates enjoy the time they spend becoming informed about your products and services, they will be more likely to purchase them. Apply the concepts you’ve learned here and start blogging today.'
-);
+, 'https://gcs.tripi.vn/public-tripi/tripi-feed/img/474078Lqk/hinh-anh-cuon-sach-mo-ra_103644366.jpg');
 
-INSERT INTO NEWS (title, publish_date, tag, content)
+INSERT INTO NEWS (title, publish_date, tag, content, img)
 VALUES ('Excellent Blogging Tips: A Smart Place To Start!', '2015-06-28', 'DREAM, IDEA, NOVEL', 'A lot of individuals today desire to have lots of people know of their presence online. Having an audience is a good way to be successful in different marketing areas. Blogging is a great way to build an audience and establish your voice. Check out this article for tips and advice about blogging that will help you get started.
 
 Make sure that you do not have duplicate content. You can check for this by using the robots that are out there. If you do have content that is duplicated, the search engines will probably tag your site for spam, and you will not wind up getting the attention that you are looking for.
@@ -359,4 +360,4 @@ Use bulleting to ensure that certain points stand out in your blog. Bulleting is
 Make sure that you post content to your blog on a regular basis or you can lose readers. When readers subscribe to your blog, they do so because they have a genuine interest in what you have to say. Leaving them hungry for information will, most likely, lead them to go seek new content elsewhere.
 
 Hopefully, this article has given you a deeper understanding of a blog’s importance, and the skills that you can use to build a great one. Use what you’ve learned here to reach great blogging success in short order!'
-);
+, 'https://baolamdong.vn/file/e7837c02845ffd04018473e6df282e92/042023/7c9abb78-159c-11e8-9db7-2e995a9a3302_20230419200043.jpg');

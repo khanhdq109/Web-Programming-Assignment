@@ -34,9 +34,6 @@ export const Member = () => {
         }
     }
 
-    const handleUpdateUser = e => {
-        
-    }
     
     const handleOpenModal = e => {
         const element = e.target;
@@ -74,7 +71,7 @@ export const Member = () => {
                                     <td>{user.fullname}</td>
                                     <td>{user.email}</td>
                                     <td>{user.bday}</td>
-                                    <td><button userId={user.user_id} className="btn btn-primary">Sửa</button></td>
+                                    {/* <td><button userId={user.user_id} className="btn btn-primary">Sửa</button></td> */}
                                     <td><button onClick={handleOpenModal} userId={user.user_id} className="btn btn-danger">Xóa</button></td>
                                 </tr>
                             ))}

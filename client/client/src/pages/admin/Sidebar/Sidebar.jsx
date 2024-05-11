@@ -20,6 +20,9 @@ export const Sidebar = () => {
                 <Link className="nav-link" to="/admin/dashboard">Thông tin chung</Link>
             </Nav.Item>
             <Nav.Item>
+                <Link className="nav-link" to="/admin/add-book">Thêm sách</Link>
+            </Nav.Item>
+            <Nav.Item>
                 <Link className="nav-link" to="/admin/brands">Thể loại</Link>
             </Nav.Item>
             <Nav.Item>

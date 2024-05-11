@@ -54,7 +54,7 @@
 
     $routes = [
         // Book
-        'POST /api.php/book/create' => 'BookController@create@2',                               // Add book to database: book_name, author, publisher, page_number, publication_date, language, description, price, book_cover, img_url, on_sale
+        'POST /api.php/book/create' => 'BookController@create@0',                               // Add book to database: book_name, author, publisher, page_number, publication_date, language, description, price, book_cover, img_url, on_sale
         'GET /api.php/book/read/(\d+)' => 'BookController@read@0',                              // Read book by id: book_id
         'GET /api.php/book/read' => 'BookController@readAll@0',                                 // Read list of all books: None
         'GET /api.php/book/search' => 'BookController@readBookByName@0',                        // Search book by name: book_name

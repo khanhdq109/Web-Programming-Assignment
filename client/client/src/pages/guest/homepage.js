@@ -1,6 +1,5 @@
 import React from 'react';
 import Slider from '../../component/slider/Slider';
-import ButtonWithContent from '../../component/ButtonWithContent/ButtonWithContent';
 
 function Homepage() {
   return (

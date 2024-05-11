@@ -11,6 +11,7 @@ import ProfilePage from './Profile';
 import ProductDetail from '../../component/ProductDetail/ProductDetail';
 import { Login } from '../admin/Login/Login';
 import { MainNav } from '../../component/MainNav/MainNav';
+import News from './news';
 
 function MainGuest() {
   return (
@@ -35,7 +36,7 @@ function MainGuest() {
             <Routes>
               <Route path="/" exact element={<Homepage />} />
               <Route path="/home" exact element={<Homepage />} />
-              <Route path="/news" exact element={<Test />} />
+              <Route path="/news" exact element={<News />} />
               <Route path="/contact" exact element={<Test />} />
               <Route path="/order" exact element={<CartOrder/>} />
               <Route path="/profile" exact element={<ProfilePage/>} />

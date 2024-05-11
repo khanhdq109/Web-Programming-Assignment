@@ -10,13 +10,24 @@ export class UserService {
             'bday': date
             
         };
-
-        console.log(JSON.stringify(body));
+        
         const response = await fetch(`${API_URL}/auth/registerAdmin`, {
             method: 'POST',
             headers: API_HEADERS,
             body: JSON.stringify(body)
         });
-        return response.json();
+        return await response.json();
+    }
+
+    async adminLogin(username, password) {
+        const response = await fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
+            headers: API_HEADERS,
+            body: JSON.stringify({
+                'user_name': username,
+                'password': password,
+            })
+        });
+        return await response.json();
     }
 }

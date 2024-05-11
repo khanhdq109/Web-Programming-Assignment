@@ -1,10 +1,10 @@
-import { Container, Row, Col, Card, Form, Button, FloatingLabel, Alert } from 'react-bootstrap';
-import '../assets/scss/Register.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Alert, Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
+import '../assets/scss/Register.scss';
 import { UserService } from '../services/UserService';
-import { Link } from 'react-router-dom'
 export const Register = () => {
-
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [fullName, setFullName] = useState("");
@@ -39,6 +39,11 @@ export const Register = () => {
     const handleDateChange = e => {
         setDate(e.target.value);
     }
+    
+    useEffect(() => {
+        if(localStorage.getItem('admin') !== null)
+            navigate('/admin/dashboard');
+    }, [navigate])
 
     const handleSubmitForm = async e => {
         e.preventDefault();

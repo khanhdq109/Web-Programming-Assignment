@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import BookService from '../services/BookService';
 import { Sidebar } from '../Sidebar/Sidebar';
+import { Link } from 'react-router-dom';
 
 export const Dashboard = () => {
     const [books, setBooks] = useState([]);
@@ -54,8 +55,8 @@ export const Dashboard = () => {
                                     <td>{book.book_name}</td>
                                     <td>{book.author}</td>
                                     <td>
+                                        <Link to={`/admin/edit-book/${book.book_id}`} className="btn btn-warning">Sửa sách</Link>
                                         <Button variant="danger" onClick={() => deleteBook(book.book_id)}>Xoá</Button>
-                                        {/* <Button variant="warning" onClick={() => update(book.id)}>Delete</Button> */}
                                     </td>
                                 </tr>
                             ))}

@@ -2,9 +2,10 @@ import { API_HEADERS, API_URL } from "../constants/api";
 
 class BookService {
 
-    async addBook(bookName, price, imgUrl, bookCover, pageNum, publisher, publicationDate, description, onSale) {
+    async addBook(bookName, author, price, imgUrl, bookCover, pageNum, publisher, publicationDate, description, onSale) {
         const body = {
             'book_name': bookName,
+            'author': author,
             'price': price,
             'img_url': imgUrl,
             'book_cover': bookCover,
@@ -23,9 +24,36 @@ class BookService {
         return await response.json();
     }
 
+    async updateBook(bookId, bookName, author, price, imgUrl, bookCover, pageNum, publisher, publicationDate, description, onSale) {
+        const body = {
+            'book_name': bookName,
+            'author': author,
+            'price': price,
+            'img_url': imgUrl,
+            'book_cover': bookCover,
+            'page_num': pageNum,
+            'publisher': publisher,
+            'publication_date': publicationDate,
+            'description': description,
+            'on_sale': onSale
+        };
+        
+        const response = await fetch(`${API_URL}/book/update/${bookId}`, {
+            method: 'PATCH',
+            headers: API_HEADERS,
+            body: JSON.stringify(body)
+        });
+        return await response.json();
+    }
+
     async findAll() {
         // use api /api.php/book/read
         const response = await fetch(`${API_URL}/book/read`);
+        return await response.json();
+    }
+
+    async findById(id) {
+        const response = await fetch(`${API_URL}/book/read/${id}`);
         return await response.json();
     }
 

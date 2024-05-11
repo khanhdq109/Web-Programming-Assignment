@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Sidebar } from '../Sidebar/Sidebar';
-import BookService from '../services/BookService';
-import { AdminNav } from '../../../component/AdminNav/AdminNav';
+import React, { useEffect, useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import { AdminNav } from '../../../component/AdminNav/AdminNav'
+import { Sidebar } from '../Sidebar/Sidebar'
+import BookService from '../services/BookService'
 
-export const AddBook = () => {
+export const EditBook = () => {
+
     const [bookName, setBookName] = useState('');
     const [author, setAuthor] = useState('');
     const [price, setPrice] = useState('');
@@ -15,6 +16,28 @@ export const AddBook = () => {
     const [publicationDate, setPublicationDate] = useState('');
     const [description, setDescription] = useState('');
     const [onSale, setOnSale] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const bookService = new BookService();
+            const bookId = window.location.pathname.split('/').pop();
+            const json = await bookService.findById(bookId);
+            if (json.status === 'Success') {
+                const data = json.data[0];
+                setBookName(data.book_name);
+                setAuthor(data.author);
+                setPrice(data.price);
+                setImgUrl(data.img_url);
+                setBookCover(data.book_cover);
+                setPageNum(data.page_num);
+                setPublisher(data.publisher);
+                setPublicationDate(data.publication_date);
+                setDescription(data.description);
+                setOnSale(data.on_sale);
+            }
+        }
+        fetchData();
+    }, []);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -41,17 +64,18 @@ export const AddBook = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async e => {
         e.preventDefault();
         const bookService = new BookService();
-        const json = await bookService.addBook(bookName, author, price, imgUrl, bookCover, pageNum, publisher, publicationDate, description, onSale);
+        const bookId = window.location.pathname.split('/').pop();
+        const json = await bookService.updateBook(bookId, bookName, author, price, imgUrl, bookCover, pageNum, publisher, publicationDate, description, onSale);
         console.log(json);
-        if (json.status === 'Success') {
-            alert('Add book successfully');
+        if(json.status === 'Success') {
+            alert('Update book successfully');
         } else {
-            alert('Add book failed');
+            alert('Update book failed');
         }
-    };
+    }
 
     return (
         <div className="container">
@@ -61,6 +85,7 @@ export const AddBook = () => {
                     <Sidebar />
                 </div>
                 <div className="col-9">
+                    <h1>Chỉnh sửa thông tin</h1>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="bookName">
                             <Form.Label>Book Name:</Form.Label>
@@ -101,10 +126,10 @@ export const AddBook = () => {
                         <Form.Group controlId="onSale">
                             <Form.Check type="checkbox" name="onSale" checked={onSale} onChange={handleInputChange} label="On Sale" />
                         </Form.Group>
-                        <Button variant="primary" type="submit">Add Book</Button>
+                        <Button variant="primary" type="submit">Update Book</Button>
                     </Form>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

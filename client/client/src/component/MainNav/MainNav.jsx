@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import '../../pages/admin/assets/scss/Header.scss'
+
 export const MainNav = () => {
 
     const location = useLocation();
@@ -29,14 +30,14 @@ export const MainNav = () => {
                 </nav>
                 <div className="header-bottom-auth-btns">
                     <button>
-                        <Link to="/guest/login">
+                        <Link to="/login">
                             <FontAwesomeIcon icon={faRightToBracket} />
                             <span>Đăng nhập</span>
                         </Link>
                     </button>
 
                     <button>
-                        <Link to="/guest/register">
+                        <Link to="/register">
                             <FontAwesomeIcon icon={faRegistered} />
                             <span>Đăng ký</span>
                         </Link>

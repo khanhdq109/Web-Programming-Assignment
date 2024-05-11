@@ -62,8 +62,8 @@
         'DELETE /api.php/book/delete/(\d+)' => 'BookController@delete@0',                       // Delete book from database: book_id
 
         // Cart
-        'POST /api.php/cart/create/(\d+)' => 'CartController@create@1',                         // Add book to cart: user_id, book_id, quantity
-        'GET /api.php/cart/read' => 'CartController@readByUserId@1',                            // Read user's cart: user_id, book_id
+        'POST /api.php/cart/create/(\d+)' => 'CartController@create@0',                         // Add book to cart: user_id, book_id, quantity
+        'GET /api.php/cart/read' => 'CartController@readByUserId@0',                            // Read user's cart: user_id, book_id
         'PATCH /api.php/cart/update' => 'CartController@update@1',                              // Update user's cart: user_id, book_id, quantity
         'DELETE /api.php/cart/delete' => 'CartController@delete@1',                             // Delete book from user's cart: user_id, book_id
 
@@ -95,8 +95,8 @@
         'DELETE /api.php/news/delete/(\d+)' => 'NewsController@delete@0',                       // Delete a specific news: id
 
         // Orders
-        'POST /api.php/orders/create' => 'OrdersController@create@1',                           // Export user's order: user_id, name, email, address, phone_number, item (list of [bookk_id, quantity])
-        'GET /api.php/orders/(\d+)' => 'OrdersController@read@1',                               // Read order's information: order_id
+        'POST /api.php/orders/create' => 'OrdersController@create@0',                           // Export user's order: user_id, name, email, address, phone_number, item (list of [bookk_id, quantity])
+        'GET /api.php/orders/(\d+)' => 'OrdersController@read@0',                               // Read order's information: order_id
         'GET /api.php/orders' => 'OrdersController@readAll@2',                                  // Read all orders (for only admin): None
         'GET /api.php/orders/readUserOrders' => 'OrdersController@readByUserId@2',              // Read all orders of a specific user (for only admin): user_id
         'GET /api.php/orders/readMyOrders' => 'OrdersController@readMyOrder@1',                 // Read user's orders (for user): user_id
@@ -116,7 +116,7 @@
         'POST /api.php/auth/register' => 'UserController@register@0',                           // Register for normal user: user_name, fullname, email, password, bday, avt_url
         'POST /api.php/auth/registerAdmin' => 'UserController@registerAdmin@0',                 // Register for admin: user_name, fullname, email, password, bday, avt_url
         'POST /api.php/auth/login' => 'UserController@login@0',                                 // Login: user_name, password
-        'GET /api.php/auth/logout' => 'UserController@logout@1',                                // Logout: None
+        'GET /api.php/auth/logout' => 'UserController@logout@0',                                // Logout: None
         'POST /api.php/auth/updatePassword' => 'UserController@updatePassword@1',               // Update password: user_id, old_password, new_password
         'POST /api.php/auth/forgotPassword' => 'UserController@forgotPassword@0',               // Forgot password: user_name/email, OTP
         'POST /api.php/auth/updateEmail' => 'UserController@updateEmail@1',                     // Update email address: OTP, new_email

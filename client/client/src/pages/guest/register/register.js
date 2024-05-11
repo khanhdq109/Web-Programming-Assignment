@@ -35,7 +35,7 @@ function RegisterGuest() {
     
     try {
         console.log(formData);
-      const response = await fetch('http://localhost:80/api.php/auth/register', {
+        const response = await fetch('http://localhost:80/api.php/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData) // Register data from your form (e.g., name, email, password)

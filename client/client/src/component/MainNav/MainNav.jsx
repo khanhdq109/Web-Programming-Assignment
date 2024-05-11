@@ -5,16 +5,17 @@ import { Link, useLocation } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import '../../pages/admin/assets/scss/Header.scss'
 import { ToastContainer, toast } from 'react-toastify';
-import { setUserId } from '../AutheUser'
+import { setUserId,getUserId } from '../AutheUser'
 
-export const MainNav = ({user_id}) => {
+export const MainNav = () => {
     const [user, setUserDetail] = useState(null);
     const navigate = useNavigate()
+    
     useEffect(() => {
         const fetchUser = async () => {
-          if (user_id !== undefined) {
+          if (getUserId() !== undefined) {
             try {
-              const response = await fetch(`http://localhost:80/api.php/user/read/${user_id}`, {
+              const response = await fetch(`http://localhost:80/api.php/user/read/${getUserId()}`, {
                 method: 'GET',
                 credentials: 'include',
               });
@@ -36,7 +37,7 @@ export const MainNav = ({user_id}) => {
         };
     
         fetchUser();
-      }, [user_id]);
+      }, [getUserId()]);
 
 
     const handleLogOut = async (event) => {
@@ -49,7 +50,7 @@ export const MainNav = ({user_id}) => {
           });
           if (response.ok) {
             setUserId(null)
-            navigate(`/`);
+            navigate(`/Guest`);
           } else {
             const errorData = await response.json();
             toast.error('Logout failed! Please check your credentials.', {
@@ -66,21 +67,21 @@ export const MainNav = ({user_id}) => {
           alert('An unexpected error occurred. Please try again later.');
         }
       };
-      
-      
+      console.log(getUserId())
+      console.log(user)
     return (
         <div className="header-bottom">
             <div className="container d-flex justify-content-between align-items-center">
                 <nav className="header-bottom-nav py-3">
                     <ul className="list-unstyled d-flex align-items-center gap-3 m-0">
-                        <li><Link className="header-bottom-nav-link active" to="/home">Trang chủ</Link></li>
+                        <li><Link className="header-bottom-nav-link" to="/home">Trang chủ</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/all">Sản phẩm</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/news">Tin tức</Link></li>
                         <li><Link className="header-bottom-nav-link" to="/login">Quản trị viên</Link></li>
                     </ul>
                 </nav>
                 <div className="header-bottom-auth-btns">
-                    {(user === null || user === undefined) ? (<>
+                    {(getUserId() === null || user === undefined || user === null) ? (<>
                         <button>
                             <Link to="/guest/login">
                                 <FontAwesomeIcon icon={faRightToBracket} />
@@ -97,7 +98,7 @@ export const MainNav = ({user_id}) => {
                     ):
                     (<>
                         <button>
-                            <Link to={`/profile/${user_id}`} className="nav-link">
+                            <Link to={`/profile/${getUserId()}`} className="nav-link">
                                 <span>{user.fullname}</span>
                             </Link>
                         </button>

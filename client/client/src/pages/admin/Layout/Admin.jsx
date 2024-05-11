@@ -13,6 +13,8 @@ export const Admin = () => {
     useEffect(() => {   
         if(localStorage.getItem('admin') == null && location.pathname !== '/admin/login') {
             navigate('/admin/register');
+        } else {
+            navigate('/admin/dashboard')
         }
     })
     return (

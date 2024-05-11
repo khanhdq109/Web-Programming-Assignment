@@ -11,12 +11,18 @@ export const Admin = () => {
     const navigate = useNavigate();
     const location = useLocation();
     useEffect(() => {   
-        if(localStorage.getItem('admin') == null && location.pathname !== '/admin/login') {
-            navigate('/admin/register');
-        } else {
-            navigate('/admin/dashboard')
+        console.log(location.pathname);
+        if(localStorage.getItem('admin') == null && location.pathname !== '/admin/register') {
+            navigate('/admin/login');
+        } 
+        else if(location.pathname === '/admin/register') {
+            navigate('/admin/register')
         }
-    })
+        else {
+            if(location.pathname === '/admin/login' || location.pathname === '/admin/register' || location.pathname === '/admin')
+                navigate('/admin/dashboard')
+        }
+    }, [location.pathname, navigate])
     return (
         <Routes>
             <Route path="/dashboard" element={<Dashboard />} />

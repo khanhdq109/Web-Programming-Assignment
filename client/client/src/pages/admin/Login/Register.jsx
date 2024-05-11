@@ -47,7 +47,6 @@ export const Register = () => {
 
     const handleSubmitForm = async e => {
         e.preventDefault();
-        console.log({ date });
         const userService = new UserService();
         if (password === repeat) {
             const json = await userService.adminRegister(username, email, fullName, date, password);

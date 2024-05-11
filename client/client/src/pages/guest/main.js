@@ -38,9 +38,8 @@ function MainGuest() {
               <Route path="/" exact element={<Homepage />} />
               <Route path="/home" exact element={<Homepage />} />
               <Route path="/news" exact element={<News />} />
-              <Route path="/contact" exact element={<Test />} />
-              <Route path="/order" exact element={<CartOrder/>} />
-              <Route path="/profile" exact element={<ProfilePage/>} />
+              <Route path="/order/:user_id" exact element={<CartOrder/>} />
+              <Route path="/profile/:user_id" exact element={<ProfilePage/>} />
               <Route path="/product/detail/:book_id" element={<ProductDetail />} />
               {/* Define routes for different categories */}
               <Route path="/all" element={<CardList category="all" />} />

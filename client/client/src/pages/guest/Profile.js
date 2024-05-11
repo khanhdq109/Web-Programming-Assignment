@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   MDBCol,
   MDBContainer,
@@ -16,6 +17,7 @@ import {
   MDBListGroup,
   MDBListGroupItem
 } from 'mdb-react-ui-kit';
+
 
 export default function ProfilePage() {
   return (

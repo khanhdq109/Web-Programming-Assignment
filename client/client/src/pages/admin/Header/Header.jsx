@@ -28,20 +28,22 @@ export const Header = () => {
                 </div>
 
                 {/* Use onSubmit event to trigger search */}
-                    <div className="header-search-bar">
-                        <form onSubmit={handleSearchSubmit}> 
-                            <input
-                            type="text"
-                            placeholder="Search for product..."
-                            value={searchQuery}
-                            onChange={handleSearchInputChange} // Handle changes in search input
-                            className="form-control"
-                            />
-                            <button type="submit">
-                            <FontAwesomeIcon icon={faSearch} />
-                            </button>
-                        </form>
-                    </div>
+                    <form onSubmit={handleSearchSubmit}> 
+                        <div className="header-search-bar">
+                            
+                                <input
+                                type="text"
+                                placeholder="Search for product..."
+                                value={searchQuery}
+                                onChange={handleSearchInputChange} // Handle changes in search input
+                                className="form-control"
+                                />
+                                <button type="submit">
+                                <FontAwesomeIcon icon={faSearch} />
+                                </button>
+                        
+                        </div>
+                    </form>
                 
 
                 <div className="header-actions">

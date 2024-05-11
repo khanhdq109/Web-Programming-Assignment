@@ -1,124 +1,67 @@
-import { faBagShopping, faComment, faEye, faWallet } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useEffect, useRef } from "react"
-import { Table } from "react-bootstrap"
-import { AdminNav } from "../../../component/AdminNav/AdminNav"
-import { Sidebar } from "../Sidebar/Sidebar"
-import '../assets/scss/Dashboard.scss'
+import React, { useEffect, useState } from 'react';
+import { Button, Table } from 'react-bootstrap';
+import BookService from '../services/BookService';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Dashboard = () => {
-    const tbodyRef = useRef();
+    const [books, setBooks] = useState([]);
 
     useEffect(() => {
-        const statusConstants = {
-            DELIVERED: "Đã giao",
-            PENDING: "Chờ xử lý",
-            CANCELLED: "Đã hủy"
+        const fecthData = async () => {
+            const bookService = new BookService();
+            const json = await bookService.findAll();
+            if (json.status === 'Success')
+                setBooks(json.data);
         }
-        const statusBackground = {
-            [statusConstants.DELIVERED]: "#00ff99",
-            [statusConstants.PENDING]: "#ffcc00",
-            [statusConstants.CANCELLED]: "#ff9999"
+        fecthData();
+    }, [])
+
+    // Function to delete a book
+    const deleteBook = (id) => {
+        const bookService = new BookService();
+        const json = bookService.deleteBook(id);
+        if (json.status === 'Success') {
+            alert('Delete book successfully');
+            setBooks(books.filter(book => book.id !== id));
+        } else {
+            alert('Delete book failed');
         }
-        const tds = tbodyRef.current.querySelectorAll('td:last-child');
-        Array.from(tds).forEach(td => {
-            td.style.background = statusBackground[td.innerText];
-        })
-    }, []);
+    };
 
     return (
-        <div className="container">
-        <AdminNav />
+        <div className='container'>
             <div className="row">
                 <div className="col-3">
                     <Sidebar />
                 </div>
                 <div className="col-9">
-                    <div className="box-wrapper row row-cols-4">
-                        <div className="col">
-                            <div className="box" style={{ background: '#ff9999' }}>
-                                <div className="box-icon">
-                                    <FontAwesomeIcon icon={faEye} />
-                                </div>
-                                <div className="box-amount">1000</div>
-                                <span>Lượt xem</span>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box" style={{ background: '#6699ff' }}>
-                                <div className="box-icon">
-                                    <FontAwesomeIcon icon={faBagShopping} />
-                                </div>
-                                <div className="box-amount">80</div>
-                                <span>Sản phẩm đã bán</span>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box" style={{ background: '#00ff99' }}>
-                                <div className="box-icon">
-                                    <FontAwesomeIcon icon={faComment} />
-                                </div>
-                                <div className="box-amount">200</div>
-                                <span>Feedback</span>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="box" style={{ background: '#ffcc00' }}>
-                                <div className="box-icon">
-                                    <FontAwesomeIcon icon={faWallet} />
-                                </div>
-                                <div className="box-amount">7000</div>
-                                <span>Doanh thu</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h1 className="mt-5">Đơn đặt hàng gần đây</h1>
-
-                    <Table bordered className="mt-3">
+                    <h1>Kho sách</h1>
+                    <Table>
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Date</th>
-                                <th>Status</th>
+                                <th>Hình ảnh</th>
+                                <th>Tiêu đề</th>
+                                <th>Tác giả</th>
+                                <th>Chọn hành động</th>
                             </tr>
                         </thead>
-                        <tbody ref={tbodyRef}>
-                            <tr>
-                                <td>Product 1</td>
-                                <td>1000</td>
-                                <td>2021-09-01</td>
-                                <td>Đã giao</td>
-                            </tr>
-                            <tr>
-                                <td>Product 2</td>
-                                <td>2000</td>
-                                <td>2021-09-02</td>
-                                <td>Chờ xử lý</td>
-                            </tr>
-                            <tr>
-                                <td>Product 3</td>
-                                <td>3000</td>
-                                <td>2021-09-03</td>
-                                <td>Đã giao</td>
-                            </tr>
-                            <tr>
-                                <td>Product 4</td>
-                                <td>4000</td>
-                                <td>2021-09-04</td>
-                                <td>Đã giao</td>
-                            </tr>
-                            <tr>
-                                <td>Product 5</td>
-                                <td>5000</td>
-                                <td>2021-09-05</td>
-                                <td>Đã hủy</td>
-                            </tr>
+                        <tbody>
+                            {books.map((book) => (
+                                <tr key={book.id}>
+                                    <td><img src={book.img_url} width={100} height={100} alt="" /></td>
+                                    <td>{book.book_name}</td>
+                                    <td>{book.author}</td>
+                                    <td>
+                                        <Button variant="danger" onClick={() => deleteBook(book.id)}>Xoá</Button>
+                                        {/* <Button variant="warning" onClick={() => update(book.id)}>Delete</Button> */}
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </div>
             </div>
+
         </div>
-    )
-}
+    );
+};

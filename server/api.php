@@ -59,7 +59,7 @@
         'GET /api.php/book/read' => 'BookController@readAll@0',                                 // Read list of all books: None
         'GET /api.php/book/search' => 'BookController@readBookByName@0',                        // Search book by name: book_name
         'PATCH /api.php/book/update/(\d+)' => 'BookController@update@0',                        // Update book information: book_id, book_name, author, publisher, page_number, publication_date, language, descriptioin, price, book_cover, img_url
-        'DELETE /api.php/book/delete/(\d+)' => 'BookController@delete@2',                       // Delete book from database: book_id
+        'DELETE /api.php/book/delete/(\d+)' => 'BookController@delete@0',                       // Delete book from database: book_id
 
         // Cart
         'POST /api.php/cart/create/(\d+)' => 'CartController@create@1',                         // Add book to cart: user_id, book_id, quantity

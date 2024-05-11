@@ -22,6 +22,20 @@ class BookService {
         });
         return await response.json();
     }
+
+    async findAll() {
+        // use api /api.php/book/read
+        const response = await fetch(`${API_URL}/book/read`);
+        return await response.json();
+    }
+
+    async deleteBook(bookId) {
+        const response = await fetch(`${API_URL}/book/delete/${bookId}`, {
+            method: 'DELETE',
+            headers: API_HEADERS
+        });
+        return await response.json();
+    }
 }
 
 export default BookService;

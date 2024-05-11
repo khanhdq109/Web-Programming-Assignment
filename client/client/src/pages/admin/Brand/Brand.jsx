@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Sidebar } from '../Sidebar/Sidebar'
 import { Table } from 'react-bootstrap'
+import { AdminNav } from '../../../component/AdminNav/AdminNav'
+import { CategoryService } from '../services/CategoryService'
 
 export const Brand = () => {
+    const [brands, setBrands] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const service = new CategoryService();
+            const json = await service.findAll();
+            if(json.status === 'Success')
+                setBrands(json.data);
+        }
+        fetchData();
+    }, []);
     return (
         <div className="container">
+            <AdminNav />
             <div className="row">
                 <div className="col-3">
                     <Sidebar />
@@ -15,31 +28,15 @@ export const Brand = () => {
                     <Table bordered className="mt-3">
                         <thead>
                             <tr>
-                                <th>Tên nhãn hàng</th>
-                                <th>Số lượng sản phẩm</th>
-                                <th>Ngày đăng ký</th>
-                                <th>Doanh thu</th>
+                                <th>Tên thể loại</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Apple</td>
-                                <td>10</td>
-                                <td>01/01/2021</td>
-                                <td>1000000</td>
-                            </tr>
-                            <tr>
-                                <td>Samsung</td>
-                                <td>15</td>
-                                <td>01/01/2021</td>
-                                <td>2000000</td>
-                            </tr>
-                            <tr>
-                                <td>OnePlus</td>
-                                <td>5</td>
-                                <td>01/01/2021</td>
-                                <td>500000</td>
-                            </tr>
+                            {!!brands && brands.map(brand => (
+                                <tr>
+                                    <td>{brand.category_name}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </Table>
                 </div>

@@ -4,6 +4,8 @@ import { Login } from './pages/admin/Login/Login';
 import MainGuest from './pages/guest/main';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { Register } from './pages/admin/Login/Register';
+import { Dashboard } from './pages/admin/Dashboard/Dashboard';
+import { Admin } from './pages/admin/Layout/Admin';
 
 
 function App() {
@@ -11,6 +13,7 @@ function App() {
         <div className="App">
           <Main>
           <Routes>
+            <Route path='/admin/*' element={<Admin />} />
             <Route path="/login" element={<Login />} />  {/* Login route */}
             <Route path="/register" element={<Register />} />  {/* Register route */}
             <Route path="/*" element={<MainGuest />} />  {/* Guest interface as default route */}

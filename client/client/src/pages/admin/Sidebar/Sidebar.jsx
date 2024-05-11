@@ -17,16 +17,16 @@ export const Sidebar = () => {
     return (
         <Nav variant="pills" className="flex-column">
             <Nav.Item>
-                <Link className="nav-link" to="/dashboard">Thông tin chung</Link>
+                <Link className="nav-link" to="/admin/dashboard">Thông tin chung</Link>
             </Nav.Item>
             <Nav.Item>
-                <Link className="nav-link" to="/brands">Nhãn hàng</Link>
+                <Link className="nav-link" to="/admin/brands">Thể loại</Link>
             </Nav.Item>
             <Nav.Item>
-                <Link className="nav-link" to="/members">Thành viên</Link>
+                <Link className="nav-link" to="/admin/members">Thành viên</Link>
             </Nav.Item>
             <Nav.Item>
-                <Link className="nav-link" to="/comments">Bình luận và đánh giá</Link>
+                <Link className="nav-link" to="/admin/comments">Bình luận và đánh giá</Link>
             </Nav.Item>
         </Nav>
     )

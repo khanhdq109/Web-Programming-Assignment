@@ -12,6 +12,7 @@ import ProductDetail from '../../component/ProductDetail/ProductDetail';
 import { Login } from '../admin/Login/Login';
 import { MainNav } from '../../component/MainNav/MainNav';
 import Searchbook from '../../component/SearchCard/search';
+import Footer from '../../component/Footer/Footer';
 import News from './news';
 
 function MainGuest() {
@@ -58,6 +59,7 @@ function MainGuest() {
           
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

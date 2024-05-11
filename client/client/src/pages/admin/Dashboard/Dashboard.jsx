@@ -23,7 +23,8 @@ export const Dashboard = () => {
         console.log(json);
         if (json.status === 'Success') {
             alert('Delete book successfully');
-            setBooks(books.filter(book => book.id !== id));
+            const newBooks = books.filter(book => book.book_id !== id)
+            setBooks(newBooks);
         } else {
             alert('Delete book failed');
         }

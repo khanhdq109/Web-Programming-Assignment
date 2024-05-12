@@ -125,7 +125,7 @@
         'GET /api.php/user/myProfile' => 'UserController@readMyProfile@1',                      // Read user's profile: user_id
         'PATCH /api.php/user/update' => 'UserController@update@1',                              // Update user's profile: user_id, fullname, bday, avt_url
         'PATCH /api.php/user/updatePoint/(\d+)' => 'UserController@updatePoint@2',              // Update user's promotion point (for only admin / or automatically): user_id, point
-        'DELETE /api.php/user/delete/(\d+)' => 'UserController@delete@2',                       // Delete user
+        'DELETE /api.php/user/delete/(\d+)' => 'UserController@delete@0',                       // Delete user
     ];
 
     $routeKey = $method . ' ' . $request;

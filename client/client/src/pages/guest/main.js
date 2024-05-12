@@ -48,7 +48,7 @@ function MainGuest() {
         </div>
         <div className="col-md-9">
           <MainNav/>
-          <div className="main-content" style={{ margin: '5px', marginBottom: '0',width: '100%', height: '100vh' }}>
+          <div className="main-content" style={{ margin: '5px', marginBottom: '0',width: '100%', height: '150vh' }}>
             <Routes>
               <Route path="/" exact element={<Homepage />} />
               <Route path="/home" exact element={<Homepage />} />
